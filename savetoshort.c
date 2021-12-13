@@ -6,14 +6,14 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:33:28 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/13 15:22:17 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/13 17:24:02 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 //TEST FUNCTION print bits in a grid
-static void	print_bits(unsigned short octet)
+/* static void	print_bits(unsigned short octet)
 {
 	unsigned short oct;
 	oct = octet;
@@ -33,7 +33,7 @@ static void	print_bits(unsigned short octet)
 		z++;
 
 	}
-}
+} */
 
 //flip specified bit
 static unsigned short flipbit(unsigned short i, int s)
@@ -78,6 +78,7 @@ unsigned short	savetoshort(char *square)
 	}
 	//print_bits(grid);
 	grid = movetopleft(grid);
+	//ft_putendl("");
 	//print_bits(grid);
 
 	return (grid);
