@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 10:14:49 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/06 12:14:29 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/13 14:42:52 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 # define TRUE 1
 # define FALSE 0
-
+# define BUFF_SIZE 16
 typedef int	t_bool;
 
 typedef struct s_list
@@ -102,5 +103,9 @@ size_t	ft_lstsize(t_list *lst);
 size_t	ft_memtrim(const void *src, void **dst, size_t contentsize);
 size_t	ft_lstlen(t_list *lst);
 char	*ft_lstjoin(t_list *lst, char limit);
+char	*ft_strjoinfree(char *s1, char *s2, int type);
+int		ft_get_next_line(const int fd, char **line);
+int		ft_strchri(const char *s, char c);
+char	*ft_strsubfree(char *s, unsigned int start, size_t len);
 
 #endif
