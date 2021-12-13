@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+         #
+#    By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 10:15:03 by htahvana          #+#    #+#              #
-#    Updated: 2021/12/07 14:12:38 by htahvana         ###   ########.fr        #
+#    Updated: 2021/12/13 14:43:20 by jylimaul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ FILES = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 	ft_islower.c ft_isupper.c ft_iswhitespace.c ft_strnlen.c \
 	ft_lstput.c ft_lstsplit.c ft_freeclr.c ft_lstdelto.c ft_lstpopi.c \
 	ft_strclen.c ft_math_sign.c ft_lstsize.c ft_memtrim.c \
-	ft_lstlen.c ft_lstjoin.c
+	ft_lstlen.c ft_lstjoin.c ft_strjoinfree.c ft_get_next_line.c ft_strchri.c \
+	ft_strsubfree.c
 
 
 OBJS = $(FILES:.c=.o)

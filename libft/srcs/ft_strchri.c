@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strchri.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jylimaul <jylimaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 12:04:21 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/13 17:27:00 by htahvana         ###   ########.fr       */
+/*   Created: 2021/11/26 13:16:33 by jylimaul          #+#    #+#             */
+/*   Updated: 2021/12/08 07:44:57 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
-# include "./libft/includes/libft.h"
+#include "libft.h"
 
-unsigned short	savetoshort(char *square);
-int	validgrid(char *grid);
-int	ft_read_file(int argc, char **argv);
-#endif
+int	ft_strchri(const char *s, char c)
+{
+	const char	*chrpos;
+
+	chrpos = ft_strchr(s, (int)c);
+	if (chrpos)
+		return (chrpos - s);
+	return (-1);
+}
