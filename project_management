@@ -1,0 +1,58 @@
+Read and open file from command line
+	If more or less parameters
+		display usage and exit
+Check file validity
+
+	Size of each tetrimino is 4x4 chars
+		GNL looping
+			if strlen is 4 AND line count is smaller or equal to 4
+				if chars in str are # or .
+					count line, free and continue
+			if strlen is 0 AND str[0] is newline AND line count is 4
+				count tetrimino, free, set line count to 0
+				if number of tetriminos is smaller or equal to 26
+					save tetrimino and check tetrimino validity
+					if ok
+						continue
+			else display "error\n" in stdout and exit
+
+	Check tetrimino validity
+		Size of tetrimino is exactly 4 blocks.
+			while not at the end of tetrimino AND block count is less than 4
+				get line from tetrimino
+				if theres # on the line
+					count block
+			if block count is not 4
+				return invalid
+
+		Each block touches another block at least on one of its 4 sides
+
+		Could this be inferred from tetriminos square size?
+
+			Get location of the first block
+			while less than 4 blocks checked
+				if theres something before or above the block
+					if another block before, after, above or below
+						find next block and	continue
+					return invalid
+
+	tetrimino data structure
+		struct?
+???
+
+	"The goal of this project is to arrange every Tetriminos with each others in order to make
+	the smallest possible square. But in some cases, this square should contains holes when
+	some given pieces won’t fit in perfectly with others.
+	Even if they are embedded in a 4x4 square, each Tetrimino is defined by its minimal boundaries (their ’#’). The 12 remaining empty characters will be ignored for the
+	Tetriminos assemble process.
+	Tetriminos are ordered by they apparition order in the file. Among all the possible
+	candidates for the smallest square, we only accept the one where Tetriminos is placed on
+	their most upper-left position."
+
+Bunch tetriminos together
+	the most left and top position in order of the tetriminos if more than one equal squares available
+	Measure size of the square
+		Check is smaller than previously smallest
+Display the smallest square in stdout
+	Replace blocks with alphabet starting from 'A' corresponding to the order of the tetriminos in the input file. First block is A, second B etc.
+
