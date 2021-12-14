@@ -6,13 +6,15 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:07:13 by jylimaul          #+#    #+#             */
-/*   Updated: 2021/12/13 15:51:36 by jylimaul         ###   ########.fr       */
+/*   Updated: 2021/12/14 17:46:12 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <stdio.h>
+#include "fillit.h"
 
+
+// output to struct array. 26 slots. savetoshor returns short that goes in the struct.
 int	ft_check_line(char *line)
 {
 	int	i;
@@ -30,55 +32,67 @@ int	ft_check_line(char *line)
 	return (1);
 }
 
-int	ft_check_file_validity(int fd, char **line, char **str)
+int	ft_check_tetris(char *line, char **str, int ln, short a)
 {
-	int		lines;
-	int		tetriminos;
-	int		ret;
-
-	lines = 0;
-	tetriminos = 0;
-	while (1)
+	if ((ft_strlen(line) == 0) && ln == 4)
 	{
-		ret = ft_get_next_line(fd, line);
-		if (ret <= 0)
-		{
-			if (tetriminos > 26)
-			{
-				ft_putendl("error");
-				return (0);
-			}
-			printf("string to short: %s\n", *str);
-			// savetoshort(*str);
-			return (1);
-		}
-		if (lines < 4 && ft_check_line(*line))
-		{
-			*str = ft_strjoinfree(*str, *line, 3);
-			lines++;
-			continue ;
-		}
-		if ((ft_strlen(*line) == 0) && lines == 4)
-		{
-			// if (!(ft_check_tetrimino_validity(str))
-				// return (-1);
-			tetriminos++;
-			lines = 0;
-			free(*line);
-			continue ;
-		}
-		ft_putendl("error");
-		free(*line);
-		return (0);
+		if (!(validgrid(*str)))
+			return (-1);
+		printf("string to short: %s\n", *str);
+		a = savetoshort(*str);
+		printf("returned short: %hu\n", a);
+		ft_strclr(*str);
+		return (1);
 	}
+	return (0);
 }
 
-int	ft_read_file(int argc, char **argv)
+int	ft_valifile(int fd, char **str, int ln, int tetris)
+{
+	int		ret;
+	char	*line;
+	int		check;
+	short	a;
+
+	a = 0;
+	ret = ft_get_next_line(fd, &line);
+	printf("gnl returned: %d\n", ret);
+	if (ret <= 0)
+	{
+		if (ret < 0)
+			return (-1);
+		if (tetris > 0 && tetris < 27)
+			return (1);
+		ft_putendl("error");
+		return (0);
+	}
+	if (ln < 4 && ft_check_line(line))
+	{
+		*str = ft_strjoinfree(*str, line, 3);
+		return (ft_valifile(fd, str, ln + 1, tetris));
+	}
+	check = ft_check_tetris(line, str, ln, a);
+	if (check > 0)
+		return (ft_valifile(fd, str, ln = 0, tetris + 1));
+	if (check < 0)
+		return (-1);
+	ft_putendl("error");
+	return (0);
+}
+
+// char	*ft_write_arr()
+// {
+
+// }
+
+int	ft_read_file(int argc, char **argv, t_tetris *arr)
 {
 	int		fd;
-	char	*line;
 	char	*str;
+	int		ln;
 
+	ln = 0;
+	arr[26].shape = 0;
 	if (argc != 2)
 	{
 		ft_putendl("Include ONE file name after the binary name.");
@@ -88,16 +102,34 @@ int	ft_read_file(int argc, char **argv)
 	if (fd < 0)
 		return (-1);
 	str = ft_strnew(1);
-	return (ft_check_file_validity(fd, &line, &str));
+	ln = ft_valifile(fd, &str, ln, 0);
+	// if (!ft_write_arr())
+	// 	return (-1);
+	close(fd);
+	return (ln);
 }
 
 int	main(int argc, char **argv)
 {
-	int	ret;
+	int			ret;
+	t_tetris	arr[27];
 
-	ret = ft_read_file(argc, argv);
+	arr[26].shape = 0;
+	ret = ft_read_file(argc, argv, arr);
 	printf("ret: %d\n", ret);
 	if (ret < 0)
 		return (-1);
 	return (0);
 }
+
+// call read_file from main
+// 	check file validity (recursive)
+// 		fd
+// 		str
+// 		ln
+// 		tetris
+// 	write content to arr
+// 		fd
+// 		arr
+
+// handle tetriminos in the arr
