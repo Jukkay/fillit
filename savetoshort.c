@@ -6,21 +6,19 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:33:28 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/13 17:24:02 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/14 16:09:28 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 //TEST FUNCTION print bits in a grid
-/* static void	print_bits(unsigned short octet)
+void	print_bits(unsigned long long oct, unsigned long long size)
 {
-	unsigned short oct;
-	oct = octet;
-
-	unsigned short i;
+	unsigned long long i;
 	int z = 1;
-	i = 1 << 15;
+	i = 1;
+	i = i << size;
 	while(i > 0)
 	{
 		if(oct & i )
@@ -28,12 +26,19 @@
 		else
 			write(1, "0", 1);
 		i = i >> 1;
-		if(z%4 == 0)
+		if(size == 15)
+		{
+			if(z%4 == 0)
+				write(1, "\n", 1);
+		}
+		else if(size == 63)
+		{
+			if(z%8 == 0)
 			write(1, "\n", 1);
+		}
 		z++;
-
 	}
-} */
+}
 
 //flip specified bit
 static unsigned short flipbit(unsigned short i, int s)
@@ -42,6 +47,35 @@ static unsigned short flipbit(unsigned short i, int s)
 	return (i);
 }
 
+//make sandbox long long from given short and offset coordinates
+unsigned long long sbshort(unsigned short i, int x, int y)
+{
+	unsigned long long sandbox;
+	unsigned long long mask;
+	//unsigned long long result;
+
+	sandbox = i;
+	sandbox = sandbox << 12;
+	mask = (16777215 & sandbox);
+	mask >>= 4;
+	sandbox = sandbox & 251658240;
+	sandbox |= mask;
+	mask = (65535 & sandbox);
+	mask >>= 4;
+	sandbox = sandbox & 252641280;
+	sandbox |= mask;
+	mask = (255 & sandbox);
+	mask >>= 4;
+	sandbox = sandbox & 252645120;
+	sandbox |= mask;
+
+	sandbox =  sandbox << ft_abs(x);
+	sandbox =  sandbox << ft_abs(y * 8);
+
+	return (sandbox);
+}
+
+
 //move bits top left
 static unsigned short movetopleft(unsigned short i)
 {
@@ -49,10 +83,7 @@ static unsigned short movetopleft(unsigned short i)
 		i = i << 4;
 	while(!(i & 34952))
 	{
-		i =  i + ((61440 & i) << 0);
-		i =  i + ((3840 & i) << 0);
-		i =  i + ((240 & i) << 0);
-		i =  i + ((15 & i) << 0);
+		i =  i << 1;
 	}
 	return (i);
 }
@@ -76,10 +107,13 @@ unsigned short	savetoshort(char *square)
 		if(str)
 			str++;
 	}
-	//print_bits(grid);
+	//print_bits(grid, 15);
 	grid = movetopleft(grid);
 	//ft_putendl("");
-	//print_bits(grid);
-
+	//print_bits(grid, 15);
+	//ft_putendl("");
+	//print_bits(movebits(grid, -1, -1), 63);
+	//ft_putendl("");
+	//ft_putnbr((int)sizeof(unsigned short));
 	return (grid);
 }

@@ -6,16 +6,20 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 15:34:19 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/13 17:21:27 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/14 14:11:56 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	check_overlap(void)
+/* int	check_overlap(t_tetris in, t_tetris cmp)
 {
+	unsigned long long sandbox;
+
+	sandbox = cmp.shape;
+
 	return (0);
-}
+} */
 
 int	validgrid(char *grid)
 {
