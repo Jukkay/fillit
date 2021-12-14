@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:33:28 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/14 15:18:37 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/14 16:09:28 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@ static unsigned short flipbit(unsigned short i, int s)
 }
 
 //make sandbox long long from given short and offset coordinates
-unsigned long long sandboxshort(unsigned short i, int x, int y)
+unsigned long long sbshort(unsigned short i, int x, int y)
 {
 	unsigned long long sandbox;
 	unsigned long long mask;
+	//unsigned long long result;
 
 	sandbox = i;
 	sandbox = sandbox << 12;
