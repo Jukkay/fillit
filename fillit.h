@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:04:21 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/14 15:32:47 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/14 18:51:14 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_tetris
 
 unsigned short		savetoshort(char *square);
 int					validgrid(char *grid);
-int					ft_read_file(int argc, char **argv);
+int					ft_read_file(int argc, char **argv, t_tetris *arr);
 unsigned long long	sbshort(unsigned short i, int x, int y);
 
 #endif
