@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_point.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 12:04:21 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/14 13:17:54 by htahvana         ###   ########.fr       */
+/*   Created: 2021/10/29 10:19:41 by htahvana          #+#    #+#             */
+/*   Updated: 2021/10/29 10:35:09 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
-# include "libft.h"
-# include "ft_point.h"
+#ifndef FT_POINT_H
+# define FT_POINT_H
 
-typedef struct s_tetris
+typedef struct s_point
 {
-	short shape;
-	t_point *pos;
+	int	x;
+	int	y;
+}	t_point;
 
-}	t_tetris;
-
-unsigned short	savetoshort(char *square);
-int	validgrid(char *grid);
-int	ft_read_file(int argc, char **argv);
 #endif
