@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:07:13 by jylimaul          #+#    #+#             */
-/*   Updated: 2021/12/14 19:01:02 by jylimaul         ###   ########.fr       */
+/*   Updated: 2021/12/14 19:03:52 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_check_tetris(char *line, char **str, int ln, short a)
 	return (0);
 }
 
-int	ft_valifile(int fd, t_tetris *arr, int ln, int tetris)
+int	ft_validfile(int fd, t_tetris *arr, int ln, int tetris)
 {
 	char	*line;
 	char	*str;
@@ -94,7 +94,7 @@ int	ft_read_file(int argc, char **argv, t_tetris *arr)
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		return (-1);
-	ln = ft_valifile(fd, arr, 0, 0);
+	ln = ft_validfile(fd, arr, 0, 0);
 	close(fd);
 	return (ln);
 }
