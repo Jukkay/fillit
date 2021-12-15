@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:33:28 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/14 16:09:28 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/15 10:40:33 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,27 +52,27 @@ unsigned long long sbshort(unsigned short i, int x, int y)
 {
 	unsigned long long sandbox;
 	unsigned long long mask;
-	//unsigned long long result;
+	unsigned long long result;
 
-	sandbox = i;
-	sandbox = sandbox << 12;
-	mask = (16777215 & sandbox);
-	mask >>= 4;
-	sandbox = sandbox & 251658240;
-	sandbox |= mask;
-	mask = (65535 & sandbox);
-	mask >>= 4;
-	sandbox = sandbox & 252641280;
-	sandbox |= mask;
-	mask = (255 & sandbox);
-	mask >>= 4;
-	sandbox = sandbox & 252645120;
-	sandbox |= mask;
-
-	sandbox =  sandbox << ft_abs(x);
-	sandbox =  sandbox << ft_abs(y * 8);
-
-	return (sandbox);
+	result = 0;
+	mask = 15 << 24;
+	sandbox = i << 12;
+	result = result | (mask & sandbox);
+	while(mask > 0)
+	{
+		mask = mask >> 8;
+		sandbox = sandbox >> 4;
+		result = result | (mask & sandbox);
+	}
+	if(x > 0)
+		result =  result << ft_abs(x);
+	else
+		result =  result >> ft_abs(x);
+	if(y > 0)
+		result =  result << ft_abs(y * 8);
+	else
+		result =  result >> ft_abs(y * 8);
+	return (result);
 }
 
 
@@ -109,11 +109,10 @@ unsigned short	savetoshort(char *square)
 	}
 	//print_bits(grid, 15);
 	grid = movetopleft(grid);
-	//ft_putendl("");
-	//print_bits(grid, 15);
-	//ft_putendl("");
-	//print_bits(movebits(grid, -1, -1), 63);
-	//ft_putendl("");
-	//ft_putnbr((int)sizeof(unsigned short));
+/* 	ft_putendl("");
+	print_bits(grid, 15);
+	ft_putendl("");
+	print_bits(sbshort(grid, 1, 1), 63);
+	ft_putendl(""); */
 	return (grid);
 }

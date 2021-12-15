@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:04:21 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/14 15:32:47 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/15 10:25:12 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 typedef struct s_tetris
 {
 	unsigned short shape;
+	t_point *size;
 	t_point *pos;
-
 }	t_tetris;
 
 unsigned short		savetoshort(char *square);
