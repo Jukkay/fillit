@@ -6,16 +6,15 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:04:21 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/15 10:41:50 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/15 13:37:21 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
 # include "libft.h"
-# include "ft_point.h"
 
-typedef struct s_tetris
+typedef struct	s_tetris
 {
 	unsigned short shape;
 	t_point *size;
@@ -26,5 +25,7 @@ unsigned short		savetoshort(char *square);
 int					validgrid(char *grid);
 int					ft_read_file(int argc, char **argv, t_tetris *arr);
 unsigned long long	sbshort(unsigned short i, int x, int y);
+int	collisioncheck(t_point *curpos, t_tetris *current, t_tetris **alltetri, int boxwidth);
+void				print_bits(unsigned long long oct, unsigned long long size);
 
 #endif

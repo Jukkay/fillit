@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:33:28 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/15 10:40:33 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/15 14:02:36 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ unsigned long long sbshort(unsigned short i, int x, int y)
 		result =  result << ft_abs(y * 8);
 	else
 		result =  result >> ft_abs(y * 8);
+
+	//print_bits(result, 63);
+	//ft_putendl("");
+
 	return (result);
 }
 
