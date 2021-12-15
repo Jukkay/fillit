@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:07:13 by jylimaul          #+#    #+#             */
-/*   Updated: 2021/12/15 11:51:44 by jylimaul         ###   ########.fr       */
+/*   Updated: 2021/12/15 11:53:30 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,7 @@ int	main(int argc, char **argv)
 	t_tetris	*ptr;
 
 	ptr = arr;
-	ret = ft_read_file(argc, argv, ptr);
-	printf("ret: %d\n", ret);
-	if (ret < 0)
-		return (-1);
+	tetriscount = ft_read_file(argc, argv, ptr);
+	printf("tetriscount: %d\n", ret);
 	return (0);
 }
