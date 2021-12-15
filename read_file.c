@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:07:13 by jylimaul          #+#    #+#             */
-/*   Updated: 2021/12/14 19:03:52 by jylimaul         ###   ########.fr       */
+/*   Updated: 2021/12/15 11:51:44 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 
 // output to struct array. 26 slots. savetoshor returns short that goes in the struct.
+// tetrimino size to t_point
 int	ft_check_line(char *line)
 {
 	int	i;
@@ -64,7 +65,7 @@ int	ft_validfile(int fd, t_tetris *arr, int ln, int tetris)
 		if ((ft_strlen(line) == 0) && ln == 4)
 		{
 			if (!(validgrid(str)))
-				return (-1);
+				return (0);
 			printf("string to short: %s\n", str);
 			arr->shape = savetoshort(str);
 			printf("returned short: %hu\n", arr->shape);
@@ -77,13 +78,20 @@ int	ft_validfile(int fd, t_tetris *arr, int ln, int tetris)
 		ft_putendl("error");
 		return (0);
 	}
-	return (1);
+	printf("string to short: %s\n", str);
+	arr->shape = savetoshort(str);
+	tetris++;
+	printf("returned short: %hu\n", arr->shape);
+	if (tetris > 0 && tetris < 27)
+		return (tetris);
+	ft_putendl("error");
+	return (0);
 }
 
 int	ft_read_file(int argc, char **argv, t_tetris *arr)
 {
 	int		fd;
-	int		ln;
+	int		ret;
 
 	arr[26].shape = 0;
 	if (argc != 2)
@@ -94,14 +102,14 @@ int	ft_read_file(int argc, char **argv, t_tetris *arr)
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		return (-1);
-	ln = ft_validfile(fd, arr, 0, 0);
+	ret = ft_validfile(fd, arr, 0, 0);
 	close(fd);
-	return (ln);
+	return (ret);
 }
 
 int	main(int argc, char **argv)
 {
-	int			ret;
+	int			tetriscount;
 	t_tetris	arr[27];
 	t_tetris	*ptr;
 
