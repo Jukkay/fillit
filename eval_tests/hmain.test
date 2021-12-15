@@ -1,0 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hmain.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/13 12:48:29 by htahvana          #+#    #+#             */
+/*   Updated: 2021/12/15 14:04:47 by htahvana         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "fillit.h"
+
+int	main(void)
+{
+	int i;
+	short a;
+	short b;
+	a = savetoshort(".........##...##");
+	print_bits(a, 15);
+	ft_putendl("==========");
+	b = savetoshort("......##...#...#");
+	print_bits(b, 15);
+
+	t_tetris arr[3];
+	t_tetris *alltetri;
+	alltetri = arr;
+
+	alltetri[0].pos = ft_newpoint(0, 0);
+	alltetri[0].size = ft_newpoint(3, 2);
+	alltetri[0].shape = a;
+
+	alltetri[1].pos = ft_newpoint(-1, -1);
+	alltetri[1].size = ft_newpoint(2, 3);
+	alltetri[1].shape = b;
+
+	t_point curpos = {2, 0};
+
+	ft_putnbr(collisioncheck(&curpos, &alltetri[1], &alltetri, 5));
+
+	i = validgrid("......#.###.....");
+	ft_putendl("");
+	//ft_putnbr(i);
+}
