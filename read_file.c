@@ -6,16 +6,21 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:07:13 by jylimaul          #+#    #+#             */
-/*   Updated: 2021/12/15 11:54:03 by jylimaul         ###   ########.fr       */
+/*   Updated: 2021/12/15 12:42:26 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "fillit.h"
 
-
-// output to struct array. 26 slots. savetoshor returns short that goes in the struct.
 // tetrimino size to t_point
+
+int	ft_puterror(char *error)
+{
+	ft_putendl(error);
+	return (0);
+}
+
 int	ft_check_line(char *line)
 {
 	int	i;
@@ -33,19 +38,18 @@ int	ft_check_line(char *line)
 	return (1);
 }
 
-int	ft_check_tetris(char *line, char **str, int ln, short a)
+int	ft_check_tetris(t_tetris **arr, char **str, int *ln, int *tetris)
 {
-	if ((ft_strlen(line) == 0) && ln == 4)
-	{
-		if (!(validgrid(*str)))
-			return (-1);
-		printf("string to short: %s\n", *str);
-		a = savetoshort(*str);
-		printf("returned short: %hu\n", a);
-		ft_strclr(*str);
-		return (1);
-	}
-	return (0);
+	if (!(validgrid(*str)))
+		return (ft_puterror("error"));
+	printf("string to short: %s\n", *str);
+	(*arr)->shape = savetoshort(*str);
+	printf("returned short: %hu\n", (*arr)->shape);
+	*arr += 1;
+	*tetris += 1;
+	*ln = 0;
+	ft_strclr(*str);
+	return (1);
 }
 
 int	ft_validfile(int fd, t_tetris *arr, int ln, int tetris)
@@ -53,8 +57,8 @@ int	ft_validfile(int fd, t_tetris *arr, int ln, int tetris)
 	char	*line;
 	char	*str;
 
-	str = ft_strnew(20);
-	while(ft_get_next_line(fd, &line) == 1)
+	str = ft_strnew(1);
+	while (ft_get_next_line(fd, &line) == 1)
 	{
 		if (ln < 4 && ft_check_line(line))
 		{
@@ -64,28 +68,17 @@ int	ft_validfile(int fd, t_tetris *arr, int ln, int tetris)
 		}
 		if ((ft_strlen(line) == 0) && ln == 4)
 		{
-			if (!(validgrid(str)))
-				return (0);
-			printf("string to short: %s\n", str);
-			arr->shape = savetoshort(str);
-			printf("returned short: %hu\n", arr->shape);
-			arr++;
-			tetris++;
-			ln = 0;
-			ft_strclr(str);
-			continue ;
+			if (ft_check_tetris(&arr, &str, &ln, &tetris))
+				continue ;
+			return (0);
 		}
-		ft_putendl("error");
-		return (0);
+		return (ft_puterror("error"));
 	}
-	printf("string to short: %s\n", str);
-	arr->shape = savetoshort(str);
-	tetris++;
-	printf("returned short: %hu\n", arr->shape);
+	if (!(ft_check_tetris(&arr, &str, &ln, &tetris)))
+		return (0);
 	if (tetris > 0 && tetris < 27)
 		return (tetris);
-	ft_putendl("error");
-	return (0);
+	return (ft_puterror("error"));
 }
 
 int	ft_read_file(int argc, char **argv, t_tetris *arr)
@@ -95,13 +88,10 @@ int	ft_read_file(int argc, char **argv, t_tetris *arr)
 
 	arr[26].shape = 0;
 	if (argc != 2)
-	{
-		ft_putendl("Include ONE file name after the binary name.");
-		return (-1);
-	}
+		return (ft_puterror("Include ONE file name after the binary name."));
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		return (-1);
+		return (0);
 	ret = ft_validfile(fd, arr, 0, 0);
 	close(fd);
 	return (ret);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+         #
+#    By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 12:35:33 by htahvana          #+#    #+#              #
-#    Updated: 2021/12/13 12:40:28 by htahvana         ###   ########.fr        #
+#    Updated: 2021/12/15 10:27:24 by jylimaul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ CFLAGS = -Wall -Werror -Wextra
 
 INCL = -I ./libft/includes
 
-LIB = -L ./libft
+LIB = -L ./libft -lft
 
-SRCS = savetoshort.c
+SRCS = savetoshort.c read_file.c checker.c
 
 
 all: $(NAME)
