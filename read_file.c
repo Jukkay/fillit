@@ -6,20 +6,12 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:07:13 by jylimaul          #+#    #+#             */
-/*   Updated: 2021/12/15 12:42:26 by jylimaul         ###   ########.fr       */
+/*   Updated: 2021/12/15 18:12:15 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "fillit.h"
-
-// tetrimino size to t_point
-
-int	ft_puterror(char *error)
-{
-	ft_putendl(error);
-	return (0);
-}
 
 int	ft_check_line(char *line)
 {
@@ -38,6 +30,38 @@ int	ft_check_line(char *line)
 	return (1);
 }
 
+void	ft_get_size(t_tetris **arr, char *str)
+{
+	t_point	*size;
+	t_point	*pos;
+	char	*temp;
+	int		i;
+
+	i = 0;
+	size = ft_memalloc(sizeof(t_point));
+	pos = ft_memalloc(sizeof(t_point));
+	pos->y = 0;
+	pos->x = 3;
+	temp = str;
+	size->y = ft_strchrdist(str, '#') / 4 + 1;
+	while (temp[i])
+	{
+		if (temp[i] == '#')
+		{
+			if (i % 4 < pos->x)
+				pos->x = i % 4;
+			if (i % 4 > pos->y)
+				pos->y = i % 4;
+		}
+		i++;
+	}
+	size->x = pos->y - pos->x + 1;
+	pos->y = -1;
+	pos->x = -1;
+	(*arr)->size = size;
+	(*arr)->pos = pos;
+}
+
 int	ft_check_tetris(t_tetris **arr, char **str, int *ln, int *tetris)
 {
 	if (!(validgrid(*str)))
@@ -45,6 +69,7 @@ int	ft_check_tetris(t_tetris **arr, char **str, int *ln, int *tetris)
 	printf("string to short: %s\n", *str);
 	(*arr)->shape = savetoshort(*str);
 	printf("returned short: %hu\n", (*arr)->shape);
+	ft_get_size(arr, *str);
 	*arr += 1;
 	*tetris += 1;
 	*ln = 0;
@@ -95,16 +120,4 @@ int	ft_read_file(int argc, char **argv, t_tetris *arr)
 	ret = ft_validfile(fd, arr, 0, 0);
 	close(fd);
 	return (ret);
-}
-
-int	main(int argc, char **argv)
-{
-	int			tetriscount;
-	t_tetris	arr[27];
-	t_tetris	*ptr;
-
-	ptr = arr;
-	tetriscount = ft_read_file(argc, argv, ptr);
-	printf("tetriscount: %d\n", tetriscount);
-	return (0);
 }
