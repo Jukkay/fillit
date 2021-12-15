@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:07:13 by jylimaul          #+#    #+#             */
-/*   Updated: 2021/12/15 11:53:30 by jylimaul         ###   ########.fr       */
+/*   Updated: 2021/12/15 11:54:03 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,6 @@ int	main(int argc, char **argv)
 
 	ptr = arr;
 	tetriscount = ft_read_file(argc, argv, ptr);
-	printf("tetriscount: %d\n", ret);
+	printf("tetriscount: %d\n", tetriscount);
 	return (0);
 }
