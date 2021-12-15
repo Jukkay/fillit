@@ -6,20 +6,29 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 15:34:19 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/14 14:11:56 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/15 16:18:08 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-/* int	check_overlap(t_tetris in, t_tetris cmp)
+void	printstructs(t_tetris **all)
 {
-	unsigned long long sandbox;
+	int	i;
 
-	sandbox = cmp.shape;
+	i = 0;
+	while ((*all)[i].shape > 0)
+	{
+		print_bits((*all)[i].shape,15);
+		ft_putendl("========");
+		ft_putnbr((*all)[i].pos->x);
+		ft_putchar(':');
+		ft_putnbr((*all)[i].pos->y);
+		ft_putendl("");
 
-	return (0);
-} */
+		i++;
+	}
+}
 
 int	validgrid(char *grid)
 {

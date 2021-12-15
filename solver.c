@@ -6,55 +6,90 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:56:48 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/15 14:02:50 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/15 17:03:07 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	collisioncheck(t_point *curpos, t_tetris *current, t_tetris **alltetri, int boxwidth)
+int	collisioncheck(int i, t_tetris **alltetri, int boxwidth)
 {
 	int l;
-	
+
 	l = 0;
-	if(curpos->x + current->size->x > boxwidth)
+	if((*alltetri)[i].pos->x + (*alltetri)[i].size->x >= boxwidth)
 		return (0);
-	if(curpos->y + current->size->y > boxwidth)
+	if((*alltetri)[i].pos->y + (*alltetri)[i].size->y >= boxwidth)
 		return (0);
 
-
-	while((alltetri)[l] && ((*alltetri)[l].pos->x >= 0))
+	while((*alltetri)[l].shape > 0 && ((*alltetri)[l].pos->x >= 0))
 	{
-		if(sbshort(current->shape, 0, 0) & sbshort((*alltetri)[l].shape, \
-			curpos->x - (*alltetri)[l].pos->x, curpos->y - (*alltetri)[l].pos->y))
+		if(l == i)
+		{
+			l++;
+			continue;
+		}
+		if(sbshort((*alltetri)[i].shape, 0, 0) & sbshort((*alltetri)[l].shape, \
+			(*alltetri)[i].pos->x - (*alltetri)[l].pos->x, \
+			(*alltetri)[i].pos->y - (*alltetri)[l].pos->y))
 			return (0);
 		l++;
 	}
-
 	return (1);
 }
 
 
-
-/* int	solver(t_tetris ***tetri, t_point *start)
+int	solver(int l, t_tetris **alltetri, int boxwidth)
 {
 
-	int	result = 0;
-
-	while(tetri with pos -1 is found)
+	//loop through all tetri until every pos is set
+		//loop go to next tetri with -1 pos
+			//loop through all positions until it fits with collisioncheck
+			//if solve pos++ = true, break;
+			//else if solve pos++ = false
+	l = 0;
+	while((*alltetri)[l].shape > 0)
 	{
-		if !collisioncheck(tetri to all tetri with a pos)
-			set tetri pos
-			continue;
-		result = solver(tetri, start);
-		if(result == 0)
-			reset pos;
 
+		if((*alltetri)[l].pos->x == -1)
+		{
+
+			
+			while ((*alltetri)[l].pos->x  + (*alltetri)[l].size->x <= boxwidth \
+				|| (*alltetri)[l].pos->y + (*alltetri)[l].size->y <= boxwidth)
+			{
+				if(collisioncheck(l, alltetri, boxwidth))
+				{
+					if(!solver(l, alltetri, boxwidth))
+					{
+						(*alltetri)[l].pos->x = -1;
+					}
+				}
+
+				if((*alltetri)[l].pos->x  + (*alltetri)[l].size->x <= boxwidth)
+					(*alltetri)[l].pos->x++;
+				else if((*alltetri)[l].pos->y + (*alltetri)[l].size->y <= boxwidth)
+				{
+					(*alltetri)[l].pos->x = 0;
+					(*alltetri)[l].pos->y++;
+				}
+				else
+				{
+					(*alltetri)[l].pos->x = -1;
+					(*alltetri)[l].pos->y = -1;
+					return (0);
+				}
+			}
+		}
+		
+
+		l++;
 	}
 
-	return (0)
+	return (1);	
+
 }
- */
+
 
 /* int solve_tetris(t_tetris ***tetri)
 {
