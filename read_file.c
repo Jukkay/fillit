@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:07:13 by jylimaul          #+#    #+#             */
-/*   Updated: 2021/12/15 18:12:15 by jylimaul         ###   ########.fr       */
+/*   Updated: 2021/12/15 19:08:41 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	ft_get_size(t_tetris **arr, char *str)
 {
 	t_point	*size;
 	t_point	*pos;
-	char	*temp;
 	int		i;
 
 	i = 0;
@@ -42,17 +41,13 @@ void	ft_get_size(t_tetris **arr, char *str)
 	pos = ft_memalloc(sizeof(t_point));
 	pos->y = 0;
 	pos->x = 3;
-	temp = str;
 	size->y = ft_strchrdist(str, '#') / 4 + 1;
-	while (temp[i])
+	while (str[i])
 	{
-		if (temp[i] == '#')
-		{
-			if (i % 4 < pos->x)
-				pos->x = i % 4;
-			if (i % 4 > pos->y)
-				pos->y = i % 4;
-		}
+		if (str[i] == '#' && i % 4 < pos->x)
+			pos->x = i % 4;
+		if (str[i] == '#' && i % 4 > pos->y)
+			pos->y = i % 4;
 		i++;
 	}
 	size->x = pos->y - pos->x + 1;
@@ -66,9 +61,7 @@ int	ft_check_tetris(t_tetris **arr, char **str, int *ln, int *tetris)
 {
 	if (!(validgrid(*str)))
 		return (ft_puterror("error"));
-	printf("string to short: %s\n", *str);
 	(*arr)->shape = savetoshort(*str);
-	printf("returned short: %hu\n", (*arr)->shape);
 	ft_get_size(arr, *str);
 	*arr += 1;
 	*tetris += 1;
