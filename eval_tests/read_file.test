@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 18:01:10 by jylimaul          #+#    #+#             */
-/*   Updated: 2021/12/15 18:06:59 by jylimaul         ###   ########.fr       */
+/*   Updated: 2021/12/16 11:15:56 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,23 @@ int	main(int argc, char **argv)
 	int			tetriscount;
 	t_tetris	arr[27];
 	t_tetris	*ptr;
+	int			i;
 
 	ptr = arr;
+	i = 0;
 	tetriscount = ft_read_file(argc, argv, ptr);
 	printf("tetriscount: %d\n", tetriscount);
-	while (tetriscount)
+	while (i < tetriscount)
 	{
+		printf("Tetrimino: %d\n", i + 1);
+		print_bits((*ptr).shape, 15);
 		printf("shape: %hu\n", (*ptr).shape);
 		printf("size x: %d\n", (*ptr).size->x);
 		printf("size y: %d\n", (*ptr).size->y);
 		printf("pos x: %d\n", (*ptr).pos->x);
 		printf("pos y: %d\n", (*ptr).pos->y);
-		tetriscount--;
+		printf("---------\n");
+		i++;
 		ptr++;
 	}
 	return (0);
