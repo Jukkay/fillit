@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:56:48 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/16 13:47:02 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/16 13:58:39 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,23 @@ int	collisioncheck(int i, t_tetris **alltetri, int boxwidth)
 	return (1);
 }
 
+int	move_tpos(int index, t_tetris **tetris, int boxwidth)
+{
+	if((*tetris)[index].pos->x  + (*tetris)[index].size->x < boxwidth)
+	(*tetris)[index].pos->x++;
+	else if((*tetris)[index].pos->y + (*tetris)[index].size->y < boxwidth)
+	{
+		(*tetris)[index].pos->x = 0;
+		(*tetris)[index].pos->y++;
+	}
+	else
+	{
+		(*tetris)[index].pos->x = -1;
+		(*tetris)[index].pos->y = -1;
+		return (0);
+	}
+	return (1);
+}
 
 int	solver(t_tetris **alltetri, int boxwidth)
 {
@@ -67,37 +84,15 @@ int	solver(t_tetris **alltetri, int boxwidth)
 		{
 			while (solver(alltetri, boxwidth) == 0)
 			{
-				if((*alltetri)[l].pos->x  + (*alltetri)[l].size->x < boxwidth)
-				(*alltetri)[l].pos->x++;
-				else if((*alltetri)[l].pos->y + (*alltetri)[l].size->y < boxwidth)
-				{
-					(*alltetri)[l].pos->x = 0;
-					(*alltetri)[l].pos->y++;
-				}
-				else
-				{
-					(*alltetri)[l].pos->x = -1;
-					(*alltetri)[l].pos->y = -1;
+				if(move_tpos(l, alltetri, boxwidth) == 0)
 					return (0);
-				}
 			}
 			return(1);
 		}
 		else
 		{
-			if((*alltetri)[l].pos->x  + (*alltetri)[l].size->x < boxwidth)
-			(*alltetri)[l].pos->x++;
-			else if((*alltetri)[l].pos->y + (*alltetri)[l].size->y < boxwidth)
-			{
-				(*alltetri)[l].pos->x = 0;
-				(*alltetri)[l].pos->y++;
-			}
-			else
-			{
-				(*alltetri)[l].pos->x = -1;
-				(*alltetri)[l].pos->y = -1;
+			if(move_tpos(l, alltetri, boxwidth) == 0)
 				return (0);
-			}
 		}
 	}
 
