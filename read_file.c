@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:07:13 by jylimaul          #+#    #+#             */
-/*   Updated: 2021/12/16 11:05:44 by jylimaul         ###   ########.fr       */
+/*   Updated: 2021/12/16 12:17:22 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,25 @@ int	ft_check_line(char *line)
 
 void	ft_get_size(t_tetris **arr, char *str)
 {
-	t_point	*size;
-	t_point	*pos;
+	t_point	size;
+	t_point	pos;
 	int		i;
 
 	i = 0;
-	size = ft_memalloc(sizeof(t_point));
-	pos = ft_memalloc(sizeof(t_point));
-	pos->y = 0;
-	pos->x = 3;
-	size->y = ft_strchrdist(str, '#') / 4 + 1;
+	pos.y = 0;
+	pos.x = 3;
+	size.y = ft_strchrdist(str, '#') / 4 + 1;
 	while (str[i])
 	{
-		if (str[i] == '#' && i % 4 < pos->x)
-			pos->x = i % 4;
-		if (str[i] == '#' && i % 4 > pos->y)
-			pos->y = i % 4;
+		if (str[i] == '#' && i % 4 < pos.x)
+			pos.x = i % 4;
+		if (str[i] == '#' && i % 4 > pos.y)
+			pos.y = i % 4;
 		i++;
 	}
-	size->x = pos->y - pos->x + 1;
-	pos->y = -1;
-	pos->x = -1;
-	(*arr)->size = size;
-	(*arr)->pos = pos;
+	size.x = pos.y - pos.x + 1;
+	(*arr)->size = ft_newpoint(size.x, size.y);
+	(*arr)->pos = ft_newpoint(-1, -1);
 }
 
 int	ft_check_tetris(t_tetris **arr, char **str, int *ln, int *tetris)
