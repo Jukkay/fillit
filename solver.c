@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:56:48 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/16 11:23:15 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/16 11:55:29 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	solver(t_tetris **alltetri, int boxwidth)
 		l++;
 	}
 	if((*alltetri)[l].shape == 0)
-		return (0);
+		return (1);
 
 	(*alltetri)[l].pos->x = 0;
 	(*alltetri)[l].pos->y = 0;
@@ -87,18 +87,30 @@ int	solver(t_tetris **alltetri, int boxwidth)
 
 }
 
+int	boxsize(t_tetris **tetri)
+{
+	int	i;
+	int	start;
 
-/* int solve_tetris(t_tetris ***tetri)
+	i = 0;
+	while((*tetri)[i].shape > 0)
+	{
+		i++;
+	}
+	start = 1;
+	while (start * start < i * 4)
+		start++;
+	return (start);
+}
+
+int	solve_tetris(t_tetris **tetri)
 {
 	int minsize;
-	t_point *start;
-	start = (t_point *)malloc(sizeof(t_point));
-	start->x = 0;
-	start->y = 0;
 
-	minsize = smallest(tetri);
-	while(!solver(tetri, start))
+	minsize = boxsize(tetri);
+	while(!solver(tetri, minsize))
 	{
 		minsize++;
 	}
-} */
+	return (minsize);
+}
