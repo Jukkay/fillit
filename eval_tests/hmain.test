@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:48:29 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/16 11:58:18 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/16 13:46:46 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(void)
 	t_tetris *alltetri;
 	alltetri = arr;
 
-	alltetri[0].pos = ft_newpoint(-1, -1);
+	alltetri[0].pos = ft_newpoint(-1,-1);
 	alltetri[0].size = ft_newpoint(3, 2);
 	alltetri[0].shape = a;
 
@@ -36,15 +36,17 @@ int	main(void)
 	alltetri[1].size = ft_newpoint(2, 3);
 	alltetri[1].shape = b;
 	
+	//ft_putnbr(collisioncheck(1, &alltetri, 4));
 	//alltetri[2] = NULL;
 
 	//ft_putnbr(collisioncheck(1, &alltetri, 12));
 	ft_putendl("vvvvvvvv");
 	printstructs(&alltetri);
 	ft_putnbr(solve_tetris(&alltetri));
+	ft_putendl("");
 	printstructs(&alltetri);
 
 	i = validgrid("......#.###.....");
-	ft_putendl("");
+	ft_putendl(""); 
 	//ft_putnbr(i);
 }

@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:04:21 by htahvana          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/12/16 11:16:13 by htahvana         ###   ########.fr       */
-=======
-/*   Updated: 2021/12/15 18:10:23 by jylimaul         ###   ########.fr       */
->>>>>>> 728ca5fb23043df7875513eeadc80ed1cf0a8281
+/*   Updated: 2021/12/16 11:41:23 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +31,6 @@ void				printstructs(t_tetris **all);
 int					solver(t_tetris **alltetri, int boxwidth);
 int					ft_strchrdist(char *str, int c);
 int					ft_puterror(char *error);
+int					solve_tetris(t_tetris **tetri);
 
 #endif

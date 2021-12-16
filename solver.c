@@ -6,20 +6,21 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:56:48 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/16 11:55:29 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/16 13:47:02 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include "stdio.h"
 
 int	collisioncheck(int i, t_tetris **alltetri, int boxwidth)
 {
 	int l;
 
 	l = 0;
-	if((*alltetri)[i].pos->x + (*alltetri)[i].size->x >= boxwidth)
+	if(((*alltetri)[i].pos->x + (*alltetri)[i].size->x > boxwidth))
 		return (0);
-	if((*alltetri)[i].pos->y + (*alltetri)[i].size->y >= boxwidth)
+	if(((*alltetri)[i].pos->y + (*alltetri)[i].size->y > boxwidth))
 		return (0);
 
 	while((*alltetri)[l].shape > 0 && ((*alltetri)[l].pos->x >= 0))
@@ -55,33 +56,50 @@ int	solver(t_tetris **alltetri, int boxwidth)
 	if((*alltetri)[l].shape == 0)
 		return (1);
 
+		
+	
 	(*alltetri)[l].pos->x = 0;
 	(*alltetri)[l].pos->y = 0;
 	while ((*alltetri)[l].pos->x  + (*alltetri)[l].size->x <= boxwidth \
-		|| (*alltetri)[l].pos->y + (*alltetri)[l].size->y <= boxwidth)
+		&& (*alltetri)[l].pos->y + (*alltetri)[l].size->y <= boxwidth)
 	{
-
 		if(collisioncheck(l, alltetri, boxwidth))
 		{
-			solver(alltetri, boxwidth);
-			return (1);
-		}
-
-		if((*alltetri)[l].pos->x  + (*alltetri)[l].size->x <= boxwidth)
-			(*alltetri)[l].pos->x++;
-		else if((*alltetri)[l].pos->y + (*alltetri)[l].size->y <= boxwidth)
-		{
-			(*alltetri)[l].pos->x = 0;
-			(*alltetri)[l].pos->y++;
+			while (solver(alltetri, boxwidth) == 0)
+			{
+				if((*alltetri)[l].pos->x  + (*alltetri)[l].size->x < boxwidth)
+				(*alltetri)[l].pos->x++;
+				else if((*alltetri)[l].pos->y + (*alltetri)[l].size->y < boxwidth)
+				{
+					(*alltetri)[l].pos->x = 0;
+					(*alltetri)[l].pos->y++;
+				}
+				else
+				{
+					(*alltetri)[l].pos->x = -1;
+					(*alltetri)[l].pos->y = -1;
+					return (0);
+				}
+			}
+			return(1);
 		}
 		else
 		{
-			(*alltetri)[l].pos->x = -1;
-			(*alltetri)[l].pos->y = -1;
-			return (0);
+			if((*alltetri)[l].pos->x  + (*alltetri)[l].size->x < boxwidth)
+			(*alltetri)[l].pos->x++;
+			else if((*alltetri)[l].pos->y + (*alltetri)[l].size->y < boxwidth)
+			{
+				(*alltetri)[l].pos->x = 0;
+				(*alltetri)[l].pos->y++;
+			}
+			else
+			{
+				(*alltetri)[l].pos->x = -1;
+				(*alltetri)[l].pos->y = -1;
+				return (0);
+			}
 		}
 	}
-
 
 	return (0);	
 

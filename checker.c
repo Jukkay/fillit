@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 15:34:19 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/15 16:18:08 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/16 13:39:16 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	printstructs(t_tetris **all)
 
 		i++;
 	}
+			ft_putendl("");
+
 }
 
 int	validgrid(char *grid)
