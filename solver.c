@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:56:48 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/15 17:03:07 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/16 11:23:15 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,54 +39,51 @@ int	collisioncheck(int i, t_tetris **alltetri, int boxwidth)
 }
 
 
-int	solver(int l, t_tetris **alltetri, int boxwidth)
+int	solver(t_tetris **alltetri, int boxwidth)
 {
 
-	//loop through all tetri until every pos is set
-		//loop go to next tetri with -1 pos
-			//loop through all positions until it fits with collisioncheck
-			//if solve pos++ = true, break;
-			//else if solve pos++ = false
+	//t_bool check;
+	int l;
+
 	l = 0;
 	while((*alltetri)[l].shape > 0)
 	{
-
 		if((*alltetri)[l].pos->x == -1)
-		{
-
-			
-			while ((*alltetri)[l].pos->x  + (*alltetri)[l].size->x <= boxwidth \
-				|| (*alltetri)[l].pos->y + (*alltetri)[l].size->y <= boxwidth)
-			{
-				if(collisioncheck(l, alltetri, boxwidth))
-				{
-					if(!solver(l, alltetri, boxwidth))
-					{
-						(*alltetri)[l].pos->x = -1;
-					}
-				}
-
-				if((*alltetri)[l].pos->x  + (*alltetri)[l].size->x <= boxwidth)
-					(*alltetri)[l].pos->x++;
-				else if((*alltetri)[l].pos->y + (*alltetri)[l].size->y <= boxwidth)
-				{
-					(*alltetri)[l].pos->x = 0;
-					(*alltetri)[l].pos->y++;
-				}
-				else
-				{
-					(*alltetri)[l].pos->x = -1;
-					(*alltetri)[l].pos->y = -1;
-					return (0);
-				}
-			}
-		}
-		
-
+			break;
 		l++;
 	}
+	if((*alltetri)[l].shape == 0)
+		return (0);
 
-	return (1);	
+	(*alltetri)[l].pos->x = 0;
+	(*alltetri)[l].pos->y = 0;
+	while ((*alltetri)[l].pos->x  + (*alltetri)[l].size->x <= boxwidth \
+		|| (*alltetri)[l].pos->y + (*alltetri)[l].size->y <= boxwidth)
+	{
+
+		if(collisioncheck(l, alltetri, boxwidth))
+		{
+			solver(alltetri, boxwidth);
+			return (1);
+		}
+
+		if((*alltetri)[l].pos->x  + (*alltetri)[l].size->x <= boxwidth)
+			(*alltetri)[l].pos->x++;
+		else if((*alltetri)[l].pos->y + (*alltetri)[l].size->y <= boxwidth)
+		{
+			(*alltetri)[l].pos->x = 0;
+			(*alltetri)[l].pos->y++;
+		}
+		else
+		{
+			(*alltetri)[l].pos->x = -1;
+			(*alltetri)[l].pos->y = -1;
+			return (0);
+		}
+	}
+
+
+	return (0);	
 
 }
 

@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:04:21 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/15 17:02:24 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/16 11:16:13 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ unsigned long long	sbshort(unsigned short i, int x, int y);
 int					collisioncheck(int i, t_tetris **alltetri, int boxwidth);
 void				print_bits(unsigned long long oct, unsigned long long size);
 void				printstructs(t_tetris **all);
-int					solver(int l, t_tetris **alltetri, int boxwidth);
+int					solver(t_tetris **alltetri, int boxwidth);
 
 #endif

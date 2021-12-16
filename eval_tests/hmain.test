@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:48:29 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/15 17:02:51 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/16 11:17:11 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int	main(void)
 	
 	//alltetri[2] = NULL;
 
-	ft_putnbr(collisioncheck(1, &alltetri, 5));
+	//ft_putnbr(collisioncheck(1, &alltetri, 12));
 	ft_putendl("vvvvvvvv");
 	printstructs(&alltetri);
-	solver(0, &alltetri, 5);
+	solver(&alltetri, 12);
 	printstructs(&alltetri);
 
 	i = validgrid("......#.###.....");
