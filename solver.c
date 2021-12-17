@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:56:48 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/17 14:32:53 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/17 16:33:14 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,12 @@ int	solver(t_tetris *alltetri, int boxwidth)
 		{
 			while (solver(alltetri, boxwidth) == 0)
 			{
-				if(move_tpos(l, alltetri, boxwidth) == 0)
+				while(move_tpos(l, alltetri, boxwidth) == 1)
+				{
+					if(collisioncheck(l, alltetri, boxwidth) == 1)
+						break;
+				}
+				if((alltetri)[l].pos->x == -1)
 					return (0);
 			}
 			return(1);

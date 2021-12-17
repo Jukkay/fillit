@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 10:58:11 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/17 14:49:04 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/17 15:22:31 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,3 +24,11 @@ int main(int argc, char **argv)
 	ft_putendl("==-==");
 	printstructs(&ptr);
 }
+/*
+ABBBB.
+ACCCEE
+AFFCEE
+A.FFGG
+HHHDDG
+.HDD.G
+*/
