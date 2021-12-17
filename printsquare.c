@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 13:23:07 by jylimaul          #+#    #+#             */
-/*   Updated: 2021/12/17 17:53:39 by jylimaul         ###   ########.fr       */
+/*   Updated: 2021/12/17 17:59:15 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	ft_check_char(t_tetris *arr, int size, int tetriscount, int a)
 		diff = (cursor & (arr[i].shape << a));
 		printf("x %d, y %d\n", arr[i].pos->x, arr[i].pos->y);
 		// printf("diff: %hu\n", diff);
-		if (diff != 0 && arr[i].pos->x <= pos.x && arr[i].pos->x + arr[i].size->x  >= pos.x && arr[i].pos->y == pos.y)
+		if (diff != 0) // && arr[i].pos->x <= pos.x && arr[i].pos->x + arr[i].size->x  >= pos.x && arr[i].pos->y == pos.y)
 		{
 			c = 'A' + i;
 			printf("%d matched, returning %c\n", i, c);
