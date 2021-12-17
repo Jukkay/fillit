@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 15:34:19 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/16 13:39:16 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/17 12:10:04 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,15 @@ void	printstructs(t_tetris **all)
 	while ((*all)[i].shape > 0)
 	{
 		print_bits((*all)[i].shape,15);
-		ft_putendl("========");
+		ft_putstr("pos:");
 		ft_putnbr((*all)[i].pos->x);
-		ft_putchar(':');
+		ft_putchar('-');
 		ft_putnbr((*all)[i].pos->y);
-		ft_putendl("");
+		ft_putstr(";size:");
+		ft_putnbr((*all)[i].size->x);
+		ft_putchar('-');
+		ft_putnbr((*all)[i].size->y);
+		ft_putendl("========");
 
 		i++;
 	}

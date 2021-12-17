@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:48:29 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/16 13:46:46 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/17 12:31:04 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ int	main(void)
 	int i;
 	short a;
 	short b;
-	a = savetoshort(".........##...##");
+
+	a = savetoshort("......##.##.....");
 	print_bits(a, 15);
 	ft_putendl("==========");
-	b = savetoshort("......##...#...#");
+	b = savetoshort(".....##..##.....");
 	print_bits(b, 15);
 	//print_bits(sbshort(b,0,1), 63);
 
@@ -28,12 +29,12 @@ int	main(void)
 	t_tetris *alltetri;
 	alltetri = arr;
 
-	alltetri[0].pos = ft_newpoint(-1,-1);
+	alltetri[0].pos = ft_newpoint(0,0);
 	alltetri[0].size = ft_newpoint(3, 2);
 	alltetri[0].shape = a;
 
-	alltetri[1].pos = ft_newpoint(-1, -1);
-	alltetri[1].size = ft_newpoint(2, 3);
+	alltetri[1].pos = ft_newpoint(3, 2);
+	alltetri[1].size = ft_newpoint(2, 2);
 	alltetri[1].shape = b;
 	
 	//ft_putnbr(collisioncheck(1, &alltetri, 4));
@@ -42,7 +43,10 @@ int	main(void)
 	//ft_putnbr(collisioncheck(1, &alltetri, 12));
 	ft_putendl("vvvvvvvv");
 	printstructs(&alltetri);
-	ft_putnbr(solve_tetris(&alltetri));
+	ft_putnbr(collisioncheck(1,&alltetri,6));
+	ft_putendl("");
+	ft_putnbr(collisioncheck(0,&alltetri,6));
+
 	ft_putendl("");
 	printstructs(&alltetri);
 
