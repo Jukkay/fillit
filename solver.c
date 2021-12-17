@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solver.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:56:48 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/17 16:33:14 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/17 17:58:33 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ int	collisioncheck(int i, t_tetris *alltetri, int boxwidth)
 		else if((alltetri)[l].pos->x >= 0)
 		{
 			a = ((alltetri)[i].pos->x - (alltetri)[l].pos->x);
-			ft_putnbr(a);
-			ft_putendl("< x difference");
+			// ft_putnbr(a);
+			// ft_putendl("< x difference");
 			b = ((alltetri)[i].pos->y - (alltetri)[l].pos->y);
-			ft_putnbr(b);
-			ft_putendl("< y difference");
+			// ft_putnbr(b);
+			// ft_putendl("< y difference");
 			if(ft_abs(a) < 4 && ft_abs(b) < 4)
 			{
 				if(sbshort((alltetri)[i].shape, 0, 0) & sbshort((alltetri)[l].shape, a, b))
@@ -85,8 +85,8 @@ int	solver(t_tetris *alltetri, int boxwidth)
 	if((alltetri)[l].shape == 0)
 		return (1);
 
-		
-	
+
+
 	(alltetri)[l].pos->x = 0;
 	(alltetri)[l].pos->y = 0;
 	while ((alltetri)[l].pos->x  + (alltetri)[l].size->x <= boxwidth \
@@ -113,7 +113,7 @@ int	solver(t_tetris *alltetri, int boxwidth)
 		}
 	}
 
-	return (0);	
+	return (0);
 
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:04:21 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/17 13:57:36 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/17 16:12:23 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int					solver(t_tetris *alltetri, int boxwidth);
 int					ft_strchrdist(char *str, int c);
 int					ft_puterror(char *error);
 int					solve_tetris(t_tetris *tetri);
+void				ft_print_square(t_tetris *arr, int size, int tetriscount);
 
 #endif

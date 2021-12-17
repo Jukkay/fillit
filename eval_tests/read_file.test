@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 18:01:10 by jylimaul          #+#    #+#             */
-/*   Updated: 2021/12/16 11:15:56 by jylimaul         ###   ########.fr       */
+/*   Updated: 2021/12/17 17:41:40 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,16 @@ int	main(int argc, char **argv)
 	int			tetriscount;
 	t_tetris	arr[27];
 	t_tetris	*ptr;
+	int			size;
 	int			i;
 
 	ptr = arr;
 	i = 0;
+	if (argc != 2)
+		return (ft_puterror("Include ONE file name after the binary name."));
 	tetriscount = ft_read_file(argc, argv, ptr);
+	size = solve_tetris(arr);
+	ft_print_square(arr, size, tetriscount);
 	printf("tetriscount: %d\n", tetriscount);
 	while (i < tetriscount)
 	{
@@ -31,8 +36,10 @@ int	main(int argc, char **argv)
 		printf("shape: %hu\n", (*ptr).shape);
 		printf("size x: %d\n", (*ptr).size->x);
 		printf("size y: %d\n", (*ptr).size->y);
+		free((*ptr).size);
 		printf("pos x: %d\n", (*ptr).pos->x);
 		printf("pos y: %d\n", (*ptr).pos->y);
+		free((*ptr).pos);
 		printf("---------\n");
 		i++;
 		ptr++;
@@ -40,3 +47,5 @@ int	main(int argc, char **argv)
 	return (0);
 
 }
+
+/* vi: filetype=c */
