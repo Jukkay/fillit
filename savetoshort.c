@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:33:28 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/17 14:14:25 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/19 12:39:00 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,34 +48,34 @@ static unsigned short flipbit(unsigned short i, int s)
 }
 
 //make sandbox long long from given short and offset coordinates
-unsigned long long sbshort(unsigned short i, int x, int y)
+unsigned short sbshort(unsigned short i, int x, int y)
 {
-	unsigned long long sandbox;
-	unsigned long long mask;
-	unsigned long long result;
+	unsigned short result;
 
-	result = 0;
-	mask = 15 << 24;
-	sandbox = i << 12;
-	result = result | (mask & sandbox);
-	while(mask > 0)
-	{
-		mask = mask >> 8;
-		sandbox = sandbox >> 4;
-		result = result | (mask & sandbox);
-	}
-	if(x > 0)
-		result =  result << ft_abs(x);
+	if(x < 0)
+		result = (15 & ((i & 15) << abs(x))) |
+				(240 & ((i & 240) << abs(x))) |
+				(3840 & ((i & 3840) << abs(x))) |
+				(61440 & ((i & 61440) << abs(x)));
 	else
-		result =  result >> ft_abs(x);
-	if(y > 0)
-		result =  result << ft_abs(y * 8);
-	else
-		result =  result >> ft_abs(y * 8);
+		result = (15 & ((i & 15) >> x)) |
+				(240 & ((i & 240) >> x)) |
+				(3840 & ((i & 3840) >> x)) |
+				(61440 & ((i & 61440) >> x));
+	i = result;
+ 	if(y < 0)
+		result = (15 & ((i & 15) << (abs(y) * 4))) |
+				(240 & ((i & 240) << (abs(y) * 4))) |
+				(3840 & ((i & 3840) << (abs(y) * 4))) |
+				(61440 & ((i & 61440) << (abs(y) * 4)));
 
+	else
+		result = (15 & ((i & 15) >> (y * 4))) |
+				(240 & ((i & 240) >> (y * 4))) |
+				(3840 & ((i & 3840) >> (y * 4))) |
+				(61440 & ((i & 61440) >> (y * 4))); 
 	return (result);
 }
-
 
 //move bits top left
 static unsigned short movetopleft(unsigned short i)

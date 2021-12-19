@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:04:21 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/17 16:12:23 by jylimaul         ###   ########.fr       */
+/*   Updated: 2021/12/19 12:39:27 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ typedef struct	s_tetris
 	t_point *pos;
 }	t_tetris;
 
-unsigned short		savetoshort(char *square);
-int					validgrid(char *grid);
-int					ft_read_file(int argc, char **argv, t_tetris *arr);
-unsigned long long	sbshort(unsigned short i, int x, int y);
-int					collisioncheck(int i, t_tetris *alltetri, int boxwidth);
-void				print_bits(unsigned long long oct, unsigned long long size);
-void				printstructs(t_tetris **all);
-int					solver(t_tetris *alltetri, int boxwidth);
-int					ft_strchrdist(char *str, int c);
-int					ft_puterror(char *error);
-int					solve_tetris(t_tetris *tetri);
-void				ft_print_square(t_tetris *arr, int size, int tetriscount);
+unsigned short	savetoshort(char *square);
+int				validgrid(char *grid);
+int				ft_read_file(int argc, char **argv, t_tetris *arr);
+unsigned short 	sbshort(unsigned short i, int x, int y);
+int				collisioncheck(int i, t_tetris *alltetri, int boxwidth);
+void			print_bits(unsigned long long oct, unsigned long long size);
+void			printstructs(t_tetris **all);
+int				solver(t_tetris *alltetri, int boxwidth);
+int				ft_strchrdist(char *str, int c);
+int				ft_puterror(char *error);
+int				solve_tetris(t_tetris *tetri);
+void			ft_print_square(t_tetris *arr, int size, int tetriscount);
 
 #endif
