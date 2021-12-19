@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:33:28 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/19 12:39:00 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/19 13:16:47 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,16 @@ static unsigned short flipbit(unsigned short i, int s)
 	return (i);
 }
 
-//make sandbox long long from given short and offset coordinates
+//offset given short in the short grid
 unsigned short sbshort(unsigned short i, int x, int y)
 {
 	unsigned short result;
 
 	if(x < 0)
-		result = (15 & ((i & 15) << abs(x))) |
-				(240 & ((i & 240) << abs(x))) |
-				(3840 & ((i & 3840) << abs(x))) |
-				(61440 & ((i & 61440) << abs(x)));
+		result = (15 & ((i & 15) << ft_abs(x))) |
+				(240 & ((i & 240) << ft_abs(x))) |
+				(3840 & ((i & 3840) << ft_abs(x))) |
+				(61440 & ((i & 61440) << ft_abs(x)));
 	else
 		result = (15 & ((i & 15) >> x)) |
 				(240 & ((i & 240) >> x)) |
@@ -64,10 +64,10 @@ unsigned short sbshort(unsigned short i, int x, int y)
 				(61440 & ((i & 61440) >> x));
 	i = result;
  	if(y < 0)
-		result = (15 & ((i & 15) << (abs(y) * 4))) |
-				(240 & ((i & 240) << (abs(y) * 4))) |
-				(3840 & ((i & 3840) << (abs(y) * 4))) |
-				(61440 & ((i & 61440) << (abs(y) * 4)));
+		result = (15 & ((i & 15) << (ft_abs(y) * 4))) |
+				(240 & ((i & 240) << (ft_abs(y) * 4))) |
+				(3840 & ((i & 3840) << (ft_abs(y) * 4))) |
+				(61440 & ((i & 61440) << (ft_abs(y) * 4)));
 
 	else
 		result = (15 & ((i & 15) >> (y * 4))) |
@@ -76,6 +76,34 @@ unsigned short sbshort(unsigned short i, int x, int y)
 				(61440 & ((i & 61440) >> (y * 4))); 
 	return (result);
 }
+/* unsigned short sbshort(unsigned sn, int x, int y)
+{
+	unsigned short result;
+
+	if(x < 0)
+		result = (0b0000000000001111 & ((sn & 0b0000000000001111) << abs(x))) |
+				(0b0000000011110000 & ((sn & 0b0000000011110000) << abs(x))) |
+				(0b0000111100000000 & ((sn & 0b0000111100000000) << abs(x))) |
+				(0b1111000000000000 & ((sn & 0b1111000000000000) << abs(x)));
+	else
+		result = (0b0000000000001111 & ((sn & 0b0000000000001111) >> x)) |
+				(0b0000000011110000 & ((sn & 0b0000000011110000) >> x)) |
+				(0b0000111100000000 & ((sn & 0b0000111100000000) >> x)) |
+				(0b1111000000000000 & ((sn & 0b1111000000000000) >> x));
+	sn = result;
+ 	if(y < 0)
+		result = (0b0000000000001111 & ((sn & 0b0000000000001111) << (abs(y) * 4))) |
+				(0b0000000011110000 & ((sn & 0b0000000011110000) << (abs(y) * 4))) |
+				(0b0000111100000000 & ((sn & 0b0000111100000000) << (abs(y) * 4))) |
+				(0b1111000000000000 & ((sn & 0b1111000000000000) << (abs(y) * 4)));
+
+	else
+		result = (0b0000000000001111 & ((sn & 0b0000000000001111) >> (y * 4))) |
+				(0b0000000011110000 & ((sn & 0b0000000011110000) >> (y * 4))) |
+				(0b0000111100000000 & ((sn & 0b0000111100000000) >> (y * 4))) |
+				(0b1111000000000000 & ((sn & 0b1111000000000000) >> (y * 4))); 
+	return (result);
+} */
 
 //move bits top left
 static unsigned short movetopleft(unsigned short i)
