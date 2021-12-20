@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:56:48 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/20 13:17:57 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/20 14:02:14 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ int	solver(t_tetris *alltetri, int boxwidth)
 				return (0);
 		}
 	}
+	(alltetri)[l].pos->x = -1;
+	(alltetri)[l].pos->y = -1;
 	return (0);
 }
 
@@ -128,9 +130,12 @@ int	solve_tetris(t_tetris *tetri)
 	int minsize;
 
 	minsize = boxsize(tetri);
-	while(!solver(tetri, minsize))
+	while(solver(tetri, minsize) == 0)
 	{
 		minsize++;
+		ft_putendl("minsize;");
+		ft_putnbr(minsize);
+		ft_putendl("");
 	}
 	return (minsize);
 }
