@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 13:23:07 by jylimaul          #+#    #+#             */
-/*   Updated: 2021/12/20 13:01:58 by jylimaul         ###   ########.fr       */
+/*   Updated: 2021/12/20 18:06:26 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,8 @@ char	ft_check_char(t_tetris *arr, int size, int tetriscount, int a)
 	pos.y = a / size;
 	while (i < tetriscount)
 	{
-		if (cursor & (arr[i].shape << a)
-			&& arr[i].pos->x <= pos.x
-			&& (arr[i].pos->x + arr[i].size->x) > pos.x
-			&& arr[i].pos->y <= pos.y
-			&& (arr[i].pos->y + arr[i].size->y) > pos.y)
+		if (arr[i].shape & sbshort(cursor, -(pos.x - arr[i].pos->x), -(pos.y - \
+		arr[i].pos->y)))
 			return ('A' + i);
 		i++;
 	}
