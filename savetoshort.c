@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:33:28 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/19 13:16:47 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/20 13:06:07 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,64 +47,73 @@ static unsigned short flipbit(unsigned short i, int s)
 	return (i);
 }
 
+/* unsigned long long sblong(unsigned short i, int x, int y)
+{
+	unsigned long long sandbox;
+	unsigned long long mask;
+	unsigned long long result;
+
+	result = 0;
+	mask = 15 << 24;
+	sandbox = i << 12;
+	result = result | (mask & sandbox);
+	while(mask > 0)
+	{
+		mask = mask >> 8;
+		sandbox = sandbox >> 4;
+		result = result | (mask & sandbox);
+	}
+	if(x > 0)
+		result =  result << ft_abs(x);
+	else
+		result =  result >> ft_abs(x);
+	if(y > 0)
+		result =  result << ft_abs(y * 8);
+	else
+		result =  result >> ft_abs(y * 8);
+
+	return (result);
+} */
+
 //offset given short in the short grid
 unsigned short sbshort(unsigned short i, int x, int y)
 {
 	unsigned short result;
-
-	if(x < 0)
-		result = (15 & ((i & 15) << ft_abs(x))) |
-				(240 & ((i & 240) << ft_abs(x))) |
-				(3840 & ((i & 3840) << ft_abs(x))) |
-				(61440 & ((i & 61440) << ft_abs(x)));
+	result = 0;
+	if (x >= 0)
+		result = (15 & ((i & 15) << x)) |
+			(240 & ((i & 240) << x)) |
+			(3840 & ((i & 3840) << x)) |
+			(61440 & ((i & 61440) << x));
 	else
-		result = (15 & ((i & 15) >> x)) |
-				(240 & ((i & 240) >> x)) |
-				(3840 & ((i & 3840) >> x)) |
-				(61440 & ((i & 61440) >> x));
+		result = (15 & ((i & 15) >> ft_abs(x))) |
+			(240 & ((i & 240) >> ft_abs(x))) |
+			(3840 & ((i & 3840) >> ft_abs(x))) |
+			(61440 & ((i & 61440) >> ft_abs(x)));
 	i = result;
- 	if(y < 0)
-		result = (15 & ((i & 15) << (ft_abs(y) * 4))) |
-				(240 & ((i & 240) << (ft_abs(y) * 4))) |
-				(3840 & ((i & 3840) << (ft_abs(y) * 4))) |
-				(61440 & ((i & 61440) << (ft_abs(y) * 4)));
-
-	else
-		result = (15 & ((i & 15) >> (y * 4))) |
-				(240 & ((i & 240) >> (y * 4))) |
-				(3840 & ((i & 3840) >> (y * 4))) |
-				(61440 & ((i & 61440) >> (y * 4))); 
+	if (y >= 0 )
+			result = i << (y * 4);
+	else 
+			result = i >> (ft_abs(y) * 4);
 	return (result);
 }
-/* unsigned short sbshort(unsigned sn, int x, int y)
+/*  unsigned short sbshort(unsigned short sn, int x, int y)
 {
 	unsigned short result;
 
 	if(x < 0)
-		result = (0b0000000000001111 & ((sn & 0b0000000000001111) << abs(x))) |
-				(0b0000000011110000 & ((sn & 0b0000000011110000) << abs(x))) |
-				(0b0000111100000000 & ((sn & 0b0000111100000000) << abs(x))) |
-				(0b1111000000000000 & ((sn & 0b1111000000000000) << abs(x)));
+		result = (0b0000000000001111 & ((sn & 0b0000000000001111) >> abs(x))) |
+				(0b0000000011110000 & ((sn & 0b0000000011110000) >> abs(x))) |
+				(0b0000111100000000 & ((sn & 0b0000111100000000) >> abs(x))) |
+				(0b1111000000000000 & ((sn & 0b1111000000000000) >> abs(x)));
 	else
-		result = (0b0000000000001111 & ((sn & 0b0000000000001111) >> x)) |
-				(0b0000000011110000 & ((sn & 0b0000000011110000) >> x)) |
-				(0b0000111100000000 & ((sn & 0b0000111100000000) >> x)) |
-				(0b1111000000000000 & ((sn & 0b1111000000000000) >> x));
-	sn = result;
- 	if(y < 0)
-		result = (0b0000000000001111 & ((sn & 0b0000000000001111) << (abs(y) * 4))) |
-				(0b0000000011110000 & ((sn & 0b0000000011110000) << (abs(y) * 4))) |
-				(0b0000111100000000 & ((sn & 0b0000111100000000) << (abs(y) * 4))) |
-				(0b1111000000000000 & ((sn & 0b1111000000000000) << (abs(y) * 4)));
-
-	else
-		result = (0b0000000000001111 & ((sn & 0b0000000000001111) >> (y * 4))) |
-				(0b0000000011110000 & ((sn & 0b0000000011110000) >> (y * 4))) |
-				(0b0000111100000000 & ((sn & 0b0000111100000000) >> (y * 4))) |
-				(0b1111000000000000 & ((sn & 0b1111000000000000) >> (y * 4))); 
+		result = (0b0000000000001111 & ((sn & 0b0000000000001111) << x)) |
+				(0b0000000011110000 & ((sn & 0b0000000011110000) << x)) |
+				(0b0000111100000000 & ((sn & 0b0000111100000000) << x)) |
+				(0b1111000000000000 & ((sn & 0b1111000000000000) << x));
 	return (result);
-} */
-
+} 
+ */
 //move bits top left
 static unsigned short movetopleft(unsigned short i)
 {

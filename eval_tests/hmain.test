@@ -6,26 +6,45 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:48:29 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/17 12:31:04 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/20 12:32:03 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fillit.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	int i;
-	short a;
-	short b;
-
-	a = savetoshort("......##.##.....");
+	//int i = 0;
+	(void)argc;
+	(void)argv;
+	unsigned short a;
+	unsigned short b;
+//".....##..##....."
+//"......##.##....."
+	a = savetoshort("################");
 	print_bits(a, 15);
 	ft_putendl("==========");
-	b = savetoshort(".....##..##.....");
+	b = savetoshort("#.#..#.##.#..#.#.");
 	print_bits(b, 15);
-	//print_bits(sbshort(b,0,1), 63);
+		ft_putendl("==========");
+	print_bits(sbshort(a,1,1), 15);
+		ft_putendl("==========");
+	print_bits(sbshort(b,1,1), 15);
 
-	t_tetris arr[3];
+/* 	t_tetris	arr[27];
+	t_tetris	*ptr;
+	
+	ptr = arr;
+	ft_read_file(argc, argv, ptr);
+	while(ptr[i].shape > 0)
+	{
+		print_bits(sblong(ptr[i].shape,-1,-1),63);
+		print_bits(sbshort(ptr[i].shape,-1,-1),15);
+		ft_putendl("--------------");
+		i++;
+	} */
+
+	/* t_tetris arr[3];
 	t_tetris *alltetri;
 	alltetri = arr;
 
@@ -52,5 +71,5 @@ int	main(void)
 
 	i = validgrid("......#.###.....");
 	ft_putendl(""); 
-	//ft_putnbr(i);
+	//ft_putnbr(i); */
 }
