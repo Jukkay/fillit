@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solver.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:56:48 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/20 14:02:14 by htahvana         ###   ########.fr       */
+/*   Updated: 2021/12/20 19:01:28 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,9 +133,9 @@ int	solve_tetris(t_tetris *tetri)
 	while(solver(tetri, minsize) == 0)
 	{
 		minsize++;
-		ft_putendl("minsize;");
-		ft_putnbr(minsize);
-		ft_putendl("");
+		// ft_putendl("minsize;");
+		// ft_putnbr(minsize);
+		// ft_putendl("");
 	}
 	return (minsize);
 }
