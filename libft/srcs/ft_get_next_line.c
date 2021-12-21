@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:01:27 by jylimaul          #+#    #+#             */
-/*   Updated: 2021/12/13 14:47:21 by jylimaul         ###   ########.fr       */
+/*   Updated: 2021/12/21 17:06:02 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ static int	ft_check_and_write_tail(char **tail, char *buf, char **line)
 	if (ft_strchr(*tail, '\n'))
 	{
 		len = ft_strchri(*tail, '\n');
-		*line = ft_strsub(*tail, 0, len);
+		*line = ft_strsub(*tail, 0, len + 1);
 		if (!(*line))
 			return (-1);
-		*tail = ft_strsubfree(*tail, len + 1, (ft_strlen(*tail) - len - 1));
+		*tail = ft_strsubfree(*tail, len + 1, (ft_strlen(*tail) - len));
 		if (!(*tail))
 			return (-1);
 		return (1);
@@ -45,7 +45,7 @@ static int	ft_check_and_write_buf(char *buf, char **tail, char **line, int n)
 		len = ft_strchri(buf, '\n');
 		if (len < 0)
 			return (-1);
-		temp = ft_strsub(buf, 0, len);
+		temp = ft_strsub(buf, 0, len + 1);
 		if (!temp)
 			return (-1);
 		*line = ft_strjoinfree(*tail, temp, 3);
