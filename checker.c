@@ -6,13 +6,13 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 15:34:19 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/03 14:07:05 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/03 14:13:22 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	printstructs(t_tetris **all)
+/* void	printstructs(t_tetris **all)
 {
 	int	i;
 
@@ -33,8 +33,7 @@ void	printstructs(t_tetris **all)
 		i++;
 	}
 			ft_putendl("");
-
-}
+} */
 
 int	validgrid(char *grid)
 {
