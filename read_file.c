@@ -34,22 +34,27 @@ int	ft_check_line(char *line)
 void	ft_get_size(t_tetris **arr, char *str)
 {
 	t_point	size;
-	t_point	pos;
+	t_point	min;
+	t_point	max;
 	int		i;
 
 	i = 0;
-	pos.y = 0;
-	pos.x = 3;
-	size.y = ft_strchrdist(str, '#') / 4 + 1;
+	ft_setpoint(&min, 3, 3);
+	ft_setpoint(&max, 0, 0);
 	while (str[i])
 	{
-		if (str[i] == '#' && i % 4 < pos.x)
-			pos.x = i % 4;
-		if (str[i] == '#' && i % 4 > pos.y)
-			pos.y = i % 4;
+		if (str[i] == '#' && i % 4 < min.x)
+			min.x = i % 4;
+		if (str[i] == '#' && i % 4 > max.x)
+			max.x = i % 4;
+		if (str[i] == '#' && i / 4 < min.y)
+			min.y = i / 4;
+		if (str[i] == '#' && i / 4 > max.y)
+			max.y = i / 4;
 		i++;
 	}
-	size.x = pos.y - pos.x + 1;
+	size.x = max.x - min.x + 1;
+	size.y = max.y - min.y + 1;
 	(*arr)->size = ft_newpoint(size.x, size.y);
 	(*arr)->pos = ft_newpoint(-1, -1);
 }
