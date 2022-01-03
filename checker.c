@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 15:34:19 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/17 12:10:04 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/03 14:07:05 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ int	validgrid(char *grid)
 	{
 		if (grid[pos] == '#')
 		{
-			if (grid[pos + 1] && grid[pos + 1] == '#')
+			if (pos < 16 && grid[pos + 1] && grid[pos + 1] == '#')
 				connections++;
-			if (grid[pos + 4] && grid[pos + 4] == '#')
+			if (pos < 12 && grid[pos + 4] && grid[pos + 4] == '#')
 				connections++;
-			if (grid[pos - 1] && grid[pos - 1] == '#')
+			if (pos > 0 && grid[pos - 1] && grid[pos - 1] == '#')
 				connections++;
-			if (grid[pos - 4] && grid[pos - 4] == '#')
+			if (pos > 3 && grid[pos - 4] && grid[pos - 4] == '#')
 				connections++;
 			i--;
 		}
