@@ -6,13 +6,13 @@
 #    By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 12:35:33 by htahvana          #+#    #+#              #
-#    Updated: 2021/12/20 18:57:52 by jylimaul         ###   ########.fr        #
+#    Updated: 2022/01/03 15:55:02 by jylimaul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
 INCL = -I ./libft/includes
 
