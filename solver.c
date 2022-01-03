@@ -6,14 +6,14 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:56:48 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/03 14:24:24 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/03 14:41:37 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include "stdio.h"
 
-int	collisioncheck(int i, t_tetris *alltetri, int boxwidth)
+static int	collisioncheck(int i, t_tetris *alltetri, int boxwidth)
 {
 	int	l;
 	int	a;
@@ -42,7 +42,7 @@ int	collisioncheck(int i, t_tetris *alltetri, int boxwidth)
 	return (1);
 }
 
-int	move_tpos(int index, t_tetris *alltetri, int boxwidth)
+static int	move_tpos(int index, t_tetris *alltetri, int boxwidth)
 {
 	if (alltetri[index].pos->x == -1)
 	{
@@ -64,7 +64,7 @@ int	move_tpos(int index, t_tetris *alltetri, int boxwidth)
 	return (1);
 }
 
-int	solver(t_tetris *alltetri, int boxwidth)
+static int	solver(t_tetris *alltetri, int boxwidth)
 {
 	int	l;
 

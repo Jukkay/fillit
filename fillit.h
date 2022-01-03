@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:04:21 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/03 14:17:07 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/03 14:41:56 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ unsigned short	savetoshort(char *square);
 int				validgrid(char *grid);
 int				ft_read_file(int argc, char **argv, t_tetris *arr);
 unsigned short	sbshort(unsigned short i, int x, int y);
-int				collisioncheck(int i, t_tetris *alltetri, int boxwidth);
 //void			print_bits(unsigned long long oct, unsigned long long size);
 //void			printstructs(t_tetris **all);
-int				solver(t_tetris *alltetri, int boxwidth);
 int				ft_strchrdist(char *str, int c);
 int				ft_puterror(char *error);
 int				solve_tetris(t_tetris *tetri);
