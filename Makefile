@@ -12,7 +12,7 @@
 
 NAME = fillit
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -g -Wall -Werror -Wextra
 
 INCL = -I ./libft/includes
 

@@ -61,18 +61,6 @@ void	ft_get_size(t_tetris **arr, char *str)
 
 int	ft_check_tetris(t_tetris **arr, char **str, int *ln, int *tetris)
 {
-	int		i;
-	char	**ret;
-
-	i = 0;
-	ret = ft_strsplit(*str, '\n');
-	ft_strclr(*str);
-	while (ret[i])
-	{
-		*str = ft_strjoinfree(*str, ret[i], 3);
-		i++;
-	}
-	free(ret);
 	if (!(validgrid(*str)))
 		return (0);
 	(*arr)->shape = savetoshort(*str);
@@ -94,22 +82,29 @@ int	ft_validfile(int fd, t_tetris *arr, int ln, int tetris)
 	{
 		if (ln < 4 && ft_check_line(line))
 		{
-			str = ft_strjoinfree(str, line, 1);
+			str = ft_strjoinfree(str, ft_strtrimfree(line), 3);
 			ln++;
 			continue ;
 		}
 		if ((ft_strlen(line) == 1) && ln == 4)
 		{
+			free(line);
 			if (ft_check_tetris(&arr, &str, &ln, &tetris))
 				continue ;
+			free(str);
 			return (0);
 		}
+		free(line);
+		free(str);
 		return (0);
 	}
-	if (!(ft_check_tetris(&arr, &str, &ln, &tetris)))
-		return (0);
-	if (tetris > 0 && tetris < 27)
-		return (tetris);
+	if (ft_check_tetris(&arr, &str, &ln, &tetris))
+	{
+		free(str);
+		if (tetris > 0 && tetris < 27)
+			return (tetris);
+	}
+	free(str);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 10:14:49 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/03 14:11:46 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/03 15:31:00 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,6 @@ int		ft_strchri(const char *s, char c);
 char	*ft_strsubfree(char *s, unsigned int start, size_t len);
 t_point	*ft_newpoint(int x, int y);
 t_point	*ft_setpoint(t_point *point, int x, int y);
+char	*ft_strtrimfree(char *s);
 
 #endif

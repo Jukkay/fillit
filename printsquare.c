@@ -12,6 +12,19 @@
 
 #include "fillit.h"
 
+void	freearr(t_tetris *arr, int tetriscount)
+{
+	int	i;
+
+	i = 0;
+	while (i < tetriscount)
+	{
+		free(arr[i].size);
+		free(arr[i].pos);
+		i++;
+	}
+}
+
 char	ft_check_char(t_tetris *arr, int size, int tetriscount, int a)
 {
 	t_point			pos;
@@ -46,4 +59,5 @@ void	ft_print_square(t_tetris *arr, int size, int tetriscount)
 		if ((i + size) % size == 0)
 			ft_putchar('\n');
 	}
+	freearr(arr, tetriscount);
 }
