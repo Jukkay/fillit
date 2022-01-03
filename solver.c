@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:56:48 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/03 12:58:43 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/03 13:52:16 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,23 @@ int	collisioncheck(int i, t_tetris *alltetri, int boxwidth)
 	return (1);
 }
 
-int	move_tpos(int index, t_tetris *tetris, int boxwidth)
+int	move_tpos(int index, t_tetris *alltetri, int boxwidth)
 {
-	if(tetris[index].pos->x  + tetris[index].size->x < boxwidth)
-		tetris[index].pos->x++;
-	else if(tetris[index].pos->y + tetris[index].size->y < boxwidth)
-		ft_setpoint(tetris[index].pos, 0, tetris[index].pos->y + 1);
+	if(alltetri[index].pos->x == -1)
+	{
+		ft_setpoint(alltetri[index].pos, 0, 0);
+		if(alltetri[index].pos->x  + alltetri[index].size->x <= boxwidth \
+		&& alltetri[index].pos->y + alltetri[index].size->y <= boxwidth)
+			return (1);
+		return (0);
+	}
+	if(alltetri[index].pos->x  + alltetri[index].size->x < boxwidth)
+		alltetri[index].pos->x++;
+	else if(alltetri[index].pos->y + alltetri[index].size->y < boxwidth)
+		ft_setpoint(alltetri[index].pos, 0, alltetri[index].pos->y + 1);
 	else
 	{
-		ft_setpoint(tetris[index].pos, -1, -1);
+		ft_setpoint(alltetri[index].pos, -1, -1);
 		return (0);
 	}
 	return (1);
@@ -65,28 +73,18 @@ int	solver(t_tetris *alltetri, int boxwidth)
 		l++;
 	if(alltetri[l].shape == 0)
 		return (1);
-	ft_setpoint(alltetri[l].pos, 0, 0);
-	while (alltetri[l].pos->x + alltetri[l].size->x <= boxwidth \
-		&& alltetri[l].pos->y + alltetri[l].size->y <= boxwidth)
+	while (move_tpos(l, alltetri, boxwidth) == 1)
 	{
 		if(collisioncheck(l, alltetri, boxwidth))
 		{
-			while (solver(alltetri, boxwidth) == 0)
+			if (solver(alltetri, boxwidth) == 0)
 			{
-				while(move_tpos(l, alltetri, boxwidth) == 1)
-				{
-					if(collisioncheck(l, alltetri, boxwidth) == 1)
-						break;
-				}
-				if(alltetri[l].pos->x == -1)
-					return (0);
+				continue;
 			}
 			return(1);
 		}
-		if(move_tpos(l, alltetri, boxwidth) == 0)
-			return (0);
 	}
-	ft_setpoint(alltetri[l].pos, -1, -1);
+	ft_setpoint(alltetri[l].pos,-1,-1);
 	return (0);
 }
 
