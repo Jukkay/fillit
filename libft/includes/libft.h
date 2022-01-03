@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 10:14:49 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/03 12:15:48 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/03 14:11:46 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,11 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-typedef struct	s_point
+typedef struct s_point
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 }	t_point;
-
 
 void	ft_bzero(void *s, size_t n);
 void	*ft_memalloc(size_t size);
