@@ -117,8 +117,14 @@ int	ft_read_file(int argc, char **argv, t_tetris *arr)
 {
 	int		fd;
 	int		ret;
+	int		i;
 
-	arr[26].shape = 0;
+	i = 0;
+	while (i < 26)
+	{
+		arr[i].shape = 0;
+		i++;
+	}
 	if (argc != 2)
 		return (ft_puterror("Include ONE file name after the binary name."));
 	fd = open(argv[1], O_RDONLY);
