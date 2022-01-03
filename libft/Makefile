@@ -6,7 +6,7 @@
 #    By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 10:15:03 by htahvana          #+#    #+#              #
-#    Updated: 2021/12/15 13:07:09 by htahvana         ###   ########.fr        #
+#    Updated: 2022/01/03 12:16:05 by htahvana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ FILES = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 	ft_lstput.c ft_lstsplit.c ft_freeclr.c ft_lstdelto.c ft_lstpopi.c \
 	ft_strclen.c ft_math_sign.c ft_lstsize.c ft_memtrim.c \
 	ft_lstlen.c ft_lstjoin.c ft_strjoinfree.c ft_get_next_line.c ft_strchri.c \
-	ft_strsubfree.c ft_newpoint.c
+	ft_strsubfree.c ft_newpoint.c ft_setpoint.c
+
 
 
 OBJS = $(FILES:.c=.o)

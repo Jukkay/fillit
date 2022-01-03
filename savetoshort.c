@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:33:28 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/20 13:06:07 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/03 11:50:41 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ static unsigned short flipbit(unsigned short i, int s)
 unsigned short sbshort(unsigned short i, int x, int y)
 {
 	unsigned short result;
+
 	result = 0;
 	if (x >= 0)
 		result = (15 & ((i & 15) << x)) |

@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   testmain.c                                         :+:      :+:    :+:   */
+/*   ft_setpoint.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/17 10:58:11 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/03 11:27:47 by htahvana         ###   ########.fr       */
+/*   Created: 2022/01/03 12:13:50 by htahvana          #+#    #+#             */
+/*   Updated: 2022/01/03 12:16:57 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fillit.h"
+#include "libft.h"
 
-int main(int argc, char **argv)
+t_point	*ft_setpoint(t_point *point, int x, int y)
 {
-	t_tetris	arr[27];
-	t_tetris	*ptr;
-	int size;
-	int tetriscount;
-
-	ptr = arr;
-	tetriscount = ft_read_file(argc, argv, ptr);
-	printstructs(&ptr);
-	size = solve_tetris(ptr);
-	ft_print_square(ptr,size,tetriscount);
+	point->x = x;
+	point->y = y;
+	return (point);
 }
-/*
-ABBBB.
-ACCCEE
-AFFCEE
-A.FFGG
-HHHDDG
-.HDD.G
-*/

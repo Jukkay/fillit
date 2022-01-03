@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solver.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:56:48 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/20 19:01:28 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/03 12:58:43 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,47 +19,38 @@ int	collisioncheck(int i, t_tetris *alltetri, int boxwidth)
 	int a;
 	int b;
 
-	l = 0;
-	if(((alltetri)[i].pos->x + (alltetri)[i].size->x > boxwidth))
+	l = -1;
+	if((alltetri[i].pos->x + alltetri[i].size->x > boxwidth))
 		return (0);
-	if(((alltetri)[i].pos->y + (alltetri)[i].size->y > boxwidth))
+	if((alltetri[i].pos->y + alltetri[i].size->y > boxwidth))
 		return (0);
-
-	while((alltetri)[l].shape > 0)
+	while(alltetri[++l].shape > 0)
 	{
-		if(l == i)
-		{
-			l++;
+		if(l == i && l++ >= 0)
 			continue;
-		}
-		else if((alltetri)[l].pos->x >= 0)
+		else if(alltetri[l].pos->x >= 0)
 		{
-			a = ((alltetri)[i].pos->x - (alltetri)[l].pos->x);
-			b = ((alltetri)[i].pos->y - (alltetri)[l].pos->y);
+			a = (alltetri[i].pos->x - alltetri[l].pos->x);
+			b = (alltetri[i].pos->y - alltetri[l].pos->y);
 			if(ft_abs(a) < 4 && ft_abs(b) < 4)
 			{
-				if(alltetri[i].shape & sbshort((alltetri)[l].shape, a, b))
+				if(alltetri[i].shape & sbshort(alltetri[l].shape, a, b))
 					return (0);
 			}
 		}
-		l++;
 	}
 	return (1);
 }
 
 int	move_tpos(int index, t_tetris *tetris, int boxwidth)
 {
-	if((tetris)[index].pos->x  + (tetris)[index].size->x < boxwidth)
-		(tetris)[index].pos->x++;
-	else if((tetris)[index].pos->y + (tetris)[index].size->y < boxwidth)
-	{
-		(tetris)[index].pos->x = 0;
-		(tetris)[index].pos->y++;
-	}
+	if(tetris[index].pos->x  + tetris[index].size->x < boxwidth)
+		tetris[index].pos->x++;
+	else if(tetris[index].pos->y + tetris[index].size->y < boxwidth)
+		ft_setpoint(tetris[index].pos, 0, tetris[index].pos->y + 1);
 	else
 	{
-		(tetris)[index].pos->x = -1;
-		(tetris)[index].pos->y = -1;
+		ft_setpoint(tetris[index].pos, -1, -1);
 		return (0);
 	}
 	return (1);
@@ -67,22 +58,16 @@ int	move_tpos(int index, t_tetris *tetris, int boxwidth)
 
 int	solver(t_tetris *alltetri, int boxwidth)
 {
-
 	int l;
 
 	l = 0;
-	while((alltetri)[l].shape > 0)
-	{
-		if((alltetri)[l].pos->x == -1)
-			break;
+	while(alltetri[l].shape > 0 && alltetri[l].pos->x >= 0)
 		l++;
-	}
-	if((alltetri)[l].shape == 0)
+	if(alltetri[l].shape == 0)
 		return (1);
-	(alltetri)[l].pos->x = 0;
-	(alltetri)[l].pos->y = 0;
-	while ((alltetri)[l].pos->x  + (alltetri)[l].size->x <= boxwidth \
-		&& (alltetri)[l].pos->y + (alltetri)[l].size->y <= boxwidth)
+	ft_setpoint(alltetri[l].pos, 0, 0);
+	while (alltetri[l].pos->x + alltetri[l].size->x <= boxwidth \
+		&& alltetri[l].pos->y + alltetri[l].size->y <= boxwidth)
 	{
 		if(collisioncheck(l, alltetri, boxwidth))
 		{
@@ -93,23 +78,19 @@ int	solver(t_tetris *alltetri, int boxwidth)
 					if(collisioncheck(l, alltetri, boxwidth) == 1)
 						break;
 				}
-				if((alltetri)[l].pos->x == -1)
+				if(alltetri[l].pos->x == -1)
 					return (0);
 			}
 			return(1);
 		}
-		else
-		{
-			if(move_tpos(l, alltetri, boxwidth) == 0)
-				return (0);
-		}
+		if(move_tpos(l, alltetri, boxwidth) == 0)
+			return (0);
 	}
-	(alltetri)[l].pos->x = -1;
-	(alltetri)[l].pos->y = -1;
+	ft_setpoint(alltetri[l].pos, -1, -1);
 	return (0);
 }
 
-int	boxsize(t_tetris *tetri)
+/* int	boxsize(t_tetris *tetri)
 {
 	int	i;
 	int	start;
@@ -123,19 +104,24 @@ int	boxsize(t_tetris *tetri)
 	while (start * start < i * 4)
 		start++;
 	return (start);
-}
+} */
 
 int	solve_tetris(t_tetris *tetri)
 {
 	int minsize;
+	int	i;
 
-	minsize = boxsize(tetri);
+	i = 0;
+	while((tetri)[i].shape > 0)
+	{
+		i++;
+	}
+	minsize = 1;
+	while (minsize * minsize < i * 4)
+		minsize++;
 	while(solver(tetri, minsize) == 0)
 	{
 		minsize++;
-		// ft_putendl("minsize;");
-		// ft_putnbr(minsize);
-		// ft_putendl("");
 	}
 	return (minsize);
 }
