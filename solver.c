@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:56:48 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/03 14:41:37 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/03 14:50:15 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	collisioncheck(int i, t_tetris *alltetri, int boxwidth)
 			b = (alltetri[i].pos->y - alltetri[l].pos->y);
 			if (ft_abs(a) < 4 && ft_abs(b) < 4)
 			{
-				if (alltetri[i].shape & sbshort(alltetri[l].shape, a, b))
+				if (alltetri[i].shape & offsetshort(alltetri[l].shape, a, b))
 					return (0);
 			}
 		}

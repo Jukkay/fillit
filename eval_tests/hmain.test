@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:48:29 by htahvana          #+#    #+#             */
-/*   Updated: 2021/12/20 12:32:03 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/03 14:50:19 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	main(int argc, char **argv)
 	b = savetoshort("#.#..#.##.#..#.#.");
 	print_bits(b, 15);
 		ft_putendl("==========");
-	print_bits(sbshort(a,1,1), 15);
+	print_bits(offsetshort(a,1,1), 15);
 		ft_putendl("==========");
-	print_bits(sbshort(b,1,1), 15);
+	print_bits(offsetshort(b,1,1), 15);
 
 /* 	t_tetris	arr[27];
 	t_tetris	*ptr;

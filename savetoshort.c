@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:33:28 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/03 14:21:56 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/03 14:50:13 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static unsigned short	flipbit(unsigned short i, int s)
 }
 
 //offset given short in the short grid
-unsigned short	sbshort(unsigned short i, int x, int y)
+unsigned short	offsetshort(unsigned short i, int x, int y)
 {
 	unsigned short	result;
 
