@@ -6,12 +6,11 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:56:48 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/03 14:50:15 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/03 14:54:02 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include "stdio.h"
 
 static int	collisioncheck(int i, t_tetris *alltetri, int boxwidth)
 {
