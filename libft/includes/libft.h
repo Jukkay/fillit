@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 10:14:49 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/03 15:31:00 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/03 17:40:37 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define TRUE 1
 # define FALSE 0
 # define BUFF_SIZE 16
+
 typedef int	t_bool;
 
 typedef struct s_list

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printsquare.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 13:23:07 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/03 14:50:18 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/03 17:39:44 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ char	ft_check_char(t_tetris *arr, int size, int tetriscount, int a)
 	pos.y = a / size;
 	while (i < tetriscount)
 	{
-		if (arr[i].shape & offsetshort(cursor, -(pos.x - arr[i].pos->x), -(pos.y - \
-		arr[i].pos->y)))
+		if (arr[i].shape & offsetshort(cursor, -(pos.x - arr[i].pos->x), \
+		-(pos.y - arr[i].pos->y)))
 			return ('A' + i);
 		i++;
 	}
