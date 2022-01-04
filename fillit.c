@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 18:41:40 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/03 15:33:07 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/04 15:04:15 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ int	main(int argc, char **argv)
 
 	ptr = arr;
 	if (argc != 2)
-		return (ft_puterror("Include ONE file name after the binary name."));
-	tetriscount = ft_read_file(argc, argv, ptr);
+		return (puterror("Include ONE file name after the binary name."));
+	tetriscount = read_file(argc, argv, ptr);
 	if (!tetriscount)
 		return (0);
 	size = solve_tetris(arr);
-	ft_print_square(arr, size, tetriscount);
+	print_square(arr, size, tetriscount);
+	freearr(arr, tetriscount);
 	return (0);
 }
