@@ -6,23 +6,20 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:56:48 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/03 14:54:02 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/04 13:39:51 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+//int g_checkcount;
 
-static int	collisioncheck(int i, t_tetris *alltetri, int boxwidth)
+static int	collisioncheck(int i, t_tetris *alltetri)
 {
 	int	l;
 	int	a;
 	int	b;
 
 	l = -1;
-	if ((alltetri[i].pos->x + alltetri[i].size->x > boxwidth))
-		return (0);
-	if ((alltetri[i].pos->y + alltetri[i].size->y > boxwidth))
-		return (0);
 	while (alltetri[++l].shape > 0)
 	{
 		if (l == i && l++ >= 0)
@@ -31,9 +28,12 @@ static int	collisioncheck(int i, t_tetris *alltetri, int boxwidth)
 		{
 			a = (alltetri[i].pos->x - alltetri[l].pos->x);
 			b = (alltetri[i].pos->y - alltetri[l].pos->y);
-			if (ft_abs(a) < 4 && ft_abs(b) < 4)
+			if(((a < 0 && alltetri[i].size->x > -a)
+				|| (a >= 0&& alltetri[l].size->x > a))
+				&& ((b < 0 && alltetri[i].size->y > -b)
+				|| (b >= 0 && alltetri[l].size->y > b)))
 			{
-				if (alltetri[i].shape & offsetshort(alltetri[l].shape, a, b))
+				if(alltetri[i].shape & offsetshort(alltetri[l].shape, a, b))
 					return (0);
 			}
 		}
@@ -74,7 +74,7 @@ static int	solver(t_tetris *alltetri, int boxwidth)
 		return (1);
 	while (move_tpos(l, alltetri, boxwidth) == 1)
 	{
-		if (collisioncheck(l, alltetri, boxwidth))
+		if (collisioncheck(l, alltetri))
 		{
 			if (solver(alltetri, boxwidth) == 0)
 			{
@@ -104,5 +104,7 @@ int	solve_tetris(t_tetris *tetri)
 	{
 		minsize++;
 	}
+	//ft_putnbr(g_checkcount);
+	//ft_putendl(" collisions");
 	return (minsize);
 }
