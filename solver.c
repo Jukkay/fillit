@@ -6,12 +6,58 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:56:48 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/04 13:39:51 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/05 16:10:47 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 //int g_checkcount;
+
+/* unsigned short	makemask(int i, t_tetris *alltetri)
+{
+	int	l;
+	unsigned short mask;
+	int	a;
+	int	b;
+	
+	mask = 0;
+	l = -1;
+	while (alltetri[++l].shape > 0)
+	{
+		if(alltetri[l].pos->x >= 0 && l != i && alltetri[l].pos->x < 4)
+		{
+			a = (alltetri[i].pos->x - alltetri[l].pos->x);
+			b = (alltetri[i].pos->y - alltetri[l].pos->y);
+			mask = mask | offsetshort(alltetri[l].shape, a, b);
+		}
+	}
+	return (mask);
+} */
+
+unsigned short	movemask(int i, unsigned short mask, t_tetris *alltetri)
+{
+	int	l;
+	int	a;
+	int	b;
+	
+	l = -1;
+	mask = offsetshort(mask, 1, 0);
+	if(alltetri[i].pos->x == 0)
+		mask = 0;
+	while (alltetri[++l].shape > 0)
+	{
+			if(l != i && alltetri[i].pos->x == 0 || (alltetri[l].pos->x >= 0
+			&& alltetri[l].pos->x <= alltetri[i].pos->x + 4
+			&& alltetri[l].pos->x + alltetri[l].size->x
+			>= alltetri[i].pos->x + 4))
+			{	
+				a = (alltetri[i].pos->x - alltetri[l].pos->x);
+				b = (alltetri[i].pos->y - alltetri[l].pos->y);
+				mask = mask | offsetshort(alltetri[l].shape, a, b);
+			}
+	}
+	return (mask);
+}
 
 static int	collisioncheck(int i, t_tetris *alltetri)
 {
