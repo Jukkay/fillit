@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 18:41:40 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/04 15:04:15 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/05 10:04:45 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 
 	ptr = arr;
 	if (argc != 2)
-		return (puterror("Include ONE file name after the binary name."));
+		return (puterror("Include ONE file name. \"./fillit <filename>\""));
 	tetriscount = read_file(argc, argv, ptr);
 	if (!tetriscount)
 		return (0);

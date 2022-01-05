@@ -6,12 +6,11 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:07:13 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/04 15:08:35 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/05 11:19:17 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
 int	check_lines(char *str, int i, int n, int ln)
 {
@@ -80,7 +79,7 @@ int	check_tetrimino(t_tetris **arr, char **str)
 	return (1);
 }
 
-int	validate_file(int fd, t_tetris *arr, int tetris, int prev)
+int	validate_file(int fd, t_tetris *arr, int tetris, int last)
 {
 	char	buf[21];
 	char	*str;
@@ -93,15 +92,15 @@ int	validate_file(int fd, t_tetris *arr, int tetris, int prev)
 		str = ft_strsub(buf, 0, n);
 		if (!(check_lines(str, 0, n, 0)))
 			return (0);
-		temp = ft_lstsplit(str, '\n');
+		temp = lstsplit(str, '\n');
 		free(str);
 		str = ft_lstjoin(temp, 0);
-		freelst(&temp);
-		prev = n;
+		ft_lstdel(&temp, &ft_freeclr);
+		last = n;
 		if (check_tetrimino(&arr, &str))
-			return (validate_file(fd, arr + 1, tetris + 1, prev));
+			return (validate_file(fd, arr + 1, tetris + 1, last));
 	}
-	if (prev == 20 && tetris > 0 && tetris < 27)
+	if (last == 20 && tetris > 0 && tetris < 27)
 		return (tetris);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 12:35:33 by htahvana          #+#    #+#              #
-#    Updated: 2022/01/03 15:55:02 by jylimaul         ###   ########.fr        #
+#    Updated: 2022/01/05 11:11:00 by jylimaul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INCL = -I ./libft/includes
 
 LIB = -L ./libft -lft
 
-SRCS = savetoshort.c read_file.c checker.c solver.c helpers.c printsquare.c fillit.c
+SRCS = savetoshort.c read_file.c checker.c solver.c helpers.c printsquare.c fillit.c lists.c
 
 all: $(NAME)
 

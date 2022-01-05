@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:04:21 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/04 15:03:56 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/05 11:16:45 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int				puterror(char *error);
 int				solve_tetris(t_tetris *tetri);
 void			print_square(t_tetris *arr, int size, int tetriscount);
 void			freearr(t_tetris *arr, int tetriscount);
-void			freelst(t_list **alst);
+t_list			*lstsplit(const char *str, char c);
+t_list			*lstnewfree(void *content, size_t content_size);
 
 #endif
