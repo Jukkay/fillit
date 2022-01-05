@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:07:13 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/05 12:57:01 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/05 14:59:12 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,17 @@ int	validate_file(int fd, t_tetris *arr, int tetris, int last)
 	int		n;
 
 	n = read(fd, buf, 21);
-	if (n == 21 || n == 20)
+	if ((n == 21 || n == 20) && tetris < 27)
 	{
 		str = ft_strsub(buf, 0, n);
 		if (!(check_lines(str, 0, n, 0)))
 			return (0);
 		temp = lstsplit(str, '\n');
-		free(str);
+		ft_freeclr(str, n);
 		str = ft_lstjoin(temp, 0);
 		ft_lstdel(&temp, &ft_freeclr);
 		last = n;
+		ft_bzero(buf, 21);
 		if (check_tetrimino(&arr, &str))
 			return (validate_file(fd, arr + 1, tetris + 1, last));
 		return (0);

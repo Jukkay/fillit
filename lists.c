@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 11:08:58 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/05 11:15:27 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/05 14:39:54 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_list	*lstsplit(const char *str, char c)
 			return (NULL);
 		}
 		if (ft_wordlen((char *)str, c) > 0)
-			ft_strncpy(word->content, str, ft_wordlen((char *)str, c));
+			ft_memmove(word->content, str, ft_wordlen((char *)str, c));
 		ft_lstput(&words, word);
 		str = str + ft_wordlen((char *)str, c);
 	}
