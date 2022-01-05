@@ -6,13 +6,13 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 13:23:07 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/05 09:53:16 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/04 15:04:22 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	check_char(t_tetris *arr, int size, int tetriscount, int a)
+char	ft_check_char(t_tetris *arr, int size, int tetriscount, int a)
 {
 	t_point			pos;
 	unsigned short	cursor;
@@ -41,7 +41,7 @@ void	print_square(t_tetris *arr, int size, int tetriscount)
 	square = size * size;
 	while (i < square)
 	{
-		ft_putchar(check_char(arr, size, tetriscount, i));
+		ft_putchar(ft_check_char(arr, size, tetriscount, i));
 		i++;
 		if ((i + size) % size == 0)
 			ft_putchar('\n');

@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:57:35 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/05 11:16:24 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/05 12:59:53 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	freearr(t_tetris *arr, int tetriscount)
 	int	i;
 
 	i = 0;
+	if (arr[0].shape == 0)
+		return ;
 	while (i < tetriscount)
 	{
 		free(arr[i].size);

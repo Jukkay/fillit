@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:07:13 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/05 12:24:19 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/05 12:57:01 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	read_file(int argc, char **argv, t_tetris *arr)
 	int		i;
 
 	i = 0;
-	while (i < 26)
+	while (i < 27)
 	{
 		arr[i].shape = 0;
 		i++;
