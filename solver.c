@@ -6,84 +6,45 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 13:56:48 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/05 16:10:47 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/05 17:09:44 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 //int g_checkcount;
 
-/* unsigned short	makemask(int i, t_tetris *alltetri)
+unsigned short	movemask(int k, unsigned short mask, t_tetris *alltetri)
 {
-	int	l;
-	unsigned short mask;
+	int	i;
 	int	a;
 	int	b;
-	
-	mask = 0;
-	l = -1;
-	while (alltetri[++l].shape > 0)
-	{
-		if(alltetri[l].pos->x >= 0 && l != i && alltetri[l].pos->x < 4)
-		{
-			a = (alltetri[i].pos->x - alltetri[l].pos->x);
-			b = (alltetri[i].pos->y - alltetri[l].pos->y);
-			mask = mask | offsetshort(alltetri[l].shape, a, b);
-		}
-	}
-	return (mask);
-} */
 
-unsigned short	movemask(int i, unsigned short mask, t_tetris *alltetri)
-{
-	int	l;
-	int	a;
-	int	b;
-	
-	l = -1;
+	i = -1;
 	mask = offsetshort(mask, 1, 0);
-	if(alltetri[i].pos->x == 0)
+	if (alltetri[k].pos->x == 0)
 		mask = 0;
-	while (alltetri[++l].shape > 0)
+	while (alltetri[++i].shape > 0)
 	{
-			if(l != i && alltetri[i].pos->x == 0 || (alltetri[l].pos->x >= 0
-			&& alltetri[l].pos->x <= alltetri[i].pos->x + 4
-			&& alltetri[l].pos->x + alltetri[l].size->x
-			>= alltetri[i].pos->x + 4))
-			{	
-				a = (alltetri[i].pos->x - alltetri[l].pos->x);
-				b = (alltetri[i].pos->y - alltetri[l].pos->y);
-				mask = mask | offsetshort(alltetri[l].shape, a, b);
-			}
+		if (i == k)
+			continue ;
+		if ((alltetri[k].pos->x == 0 && alltetri[i].pos->x != -1)
+			|| (alltetri[i].pos->x >= 0
+				&& alltetri[i].pos->x <= alltetri[k].pos->x + 4
+				&& alltetri[i].pos->x + alltetri[i].size->x
+				>= alltetri[k].pos->x + 4))
+		{	
+			a = (alltetri[k].pos->x - alltetri[i].pos->x);
+			b = (alltetri[k].pos->y - alltetri[i].pos->y);
+			mask = mask | offsetshort(alltetri[i].shape, a, b);
+		}
 	}
 	return (mask);
 }
 
-static int	collisioncheck(int i, t_tetris *alltetri)
+static int	collisioncheck(int i, t_tetris *alltetri, unsigned short mask)
 {
-	int	l;
-	int	a;
-	int	b;
-
-	l = -1;
-	while (alltetri[++l].shape > 0)
-	{
-		if (l == i && l++ >= 0)
-			continue ;
-		else if (alltetri[l].pos->x >= 0)
-		{
-			a = (alltetri[i].pos->x - alltetri[l].pos->x);
-			b = (alltetri[i].pos->y - alltetri[l].pos->y);
-			if(((a < 0 && alltetri[i].size->x > -a)
-				|| (a >= 0&& alltetri[l].size->x > a))
-				&& ((b < 0 && alltetri[i].size->y > -b)
-				|| (b >= 0 && alltetri[l].size->y > b)))
-			{
-				if(alltetri[i].shape & offsetshort(alltetri[l].shape, a, b))
-					return (0);
-			}
-		}
-	}
+	if (alltetri[i].shape & mask)
+		return (0);
 	return (1);
 }
 
@@ -111,8 +72,10 @@ static int	move_tpos(int index, t_tetris *alltetri, int boxwidth)
 
 static int	solver(t_tetris *alltetri, int boxwidth)
 {
-	int	l;
+	int				l;
+	unsigned short	mask;
 
+	mask = 0;
 	l = 0;
 	while (alltetri[l].shape > 0 && alltetri[l].pos->x >= 0)
 		l++;
@@ -120,7 +83,8 @@ static int	solver(t_tetris *alltetri, int boxwidth)
 		return (1);
 	while (move_tpos(l, alltetri, boxwidth) == 1)
 	{
-		if (collisioncheck(l, alltetri))
+		mask = movemask(l, mask, alltetri);
+		if (collisioncheck(l, alltetri, mask))
 		{
 			if (solver(alltetri, boxwidth) == 0)
 			{
@@ -150,7 +114,5 @@ int	solve_tetris(t_tetris *tetri)
 	{
 		minsize++;
 	}
-	//ft_putnbr(g_checkcount);
-	//ft_putendl(" collisions");
 	return (minsize);
 }
