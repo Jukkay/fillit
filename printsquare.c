@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 13:23:07 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/06 10:03:47 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/06 17:10:30 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	ft_check_char(t_tetris *arr, int size, int a)
 	i = 0;
 	pos.x = (a + size) % size;
 	pos.y = a / size;
-	while (arr[i].shape != 0)
+	while (arr[i].shape > 0)
 	{
 		if (arr[i].shape & offsetshort(cursor, -(pos.x - arr[i].pos->x), \
 		-(pos.y - arr[i].pos->y)))
