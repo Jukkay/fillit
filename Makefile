@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+         #
+#    By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 12:35:33 by htahvana          #+#    #+#              #
-#    Updated: 2022/01/05 15:25:32 by jylimaul         ###   ########.fr        #
+#    Updated: 2022/01/06 21:43:04 by htahvana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ INCL = -I ./libft/includes
 
 LIB = -L ./libft -lft
 
-SRCS = savetoshort.c read_file.c checker.c solver.c helpers.c printsquare.c fillit.c lists.c
+SRCS = savetoshort.c read_file.c checker.c solver.c map.c \
+	helpers.c printsquare.c fillit.c lists.c
 
 all: $(NAME)
 

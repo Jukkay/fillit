@@ -5,48 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 13:56:48 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/05 17:09:44 by htahvana         ###   ########.fr       */
+/*   Created: 2022/01/06 21:40:45 by htahvana          #+#    #+#             */
+/*   Updated: 2022/01/06 21:52:13 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-//int g_checkcount;
-
-unsigned short	movemask(int k, unsigned short mask, t_tetris *alltetri)
-{
-	int	i;
-	int	a;
-	int	b;
-
-	i = -1;
-	mask = offsetshort(mask, 1, 0);
-	if (alltetri[k].pos->x == 0)
-		mask = 0;
-	while (alltetri[++i].shape > 0)
-	{
-		if (i == k)
-			continue ;
-		if ((alltetri[k].pos->x == 0 && alltetri[i].pos->x != -1)
-			|| (alltetri[i].pos->x >= 0
-				&& alltetri[i].pos->x <= alltetri[k].pos->x + 4
-				&& alltetri[i].pos->x + alltetri[i].size->x
-				>= alltetri[k].pos->x + 4))
-		{	
-			a = (alltetri[k].pos->x - alltetri[i].pos->x);
-			b = (alltetri[k].pos->y - alltetri[i].pos->y);
-			mask = mask | offsetshort(alltetri[i].shape, a, b);
-		}
-	}
-	return (mask);
-}
-
-static int	collisioncheck(int i, t_tetris *alltetri, unsigned short mask)
-{
-	if (alltetri[i].shape & mask)
-		return (0);
-	return (1);
-}
 
 static int	move_tpos(int index, t_tetris *alltetri, int boxwidth)
 {
@@ -70,30 +34,29 @@ static int	move_tpos(int index, t_tetris *alltetri, int boxwidth)
 	return (1);
 }
 
-static int	solver(t_tetris *alltetri, int boxwidth)
+static int	solver(t_tetris *alltetri, int boxwidth, unsigned short *map)
 {
-	int				l;
-	unsigned short	mask;
+	int				i;
 
-	mask = 0;
-	l = 0;
-	while (alltetri[l].shape > 0 && alltetri[l].pos->x >= 0)
-		l++;
-	if (alltetri[l].shape == 0)
+	i = 0;
+	while (alltetri[i].shape > 0 && alltetri[i].pos->x >= 0)
+		i++;
+	if (alltetri[i].shape == 0)
 		return (1);
-	while (move_tpos(l, alltetri, boxwidth) == 1)
+	while (move_tpos(i, alltetri, boxwidth) == 1)
 	{
-		mask = movemask(l, mask, alltetri);
-		if (collisioncheck(l, alltetri, mask))
+		if (collisioncheck(i, alltetri, map))
 		{
-			if (solver(alltetri, boxwidth) == 0)
+			printtomap(i, alltetri, map);
+			if (solver(alltetri, boxwidth, map) == 0)
 			{
+				remofmap(i, alltetri, map);
 				continue ;
 			}
 			return (1);
 		}
 	}
-	ft_setpoint(alltetri[l].pos, -1, -1);
+	ft_setpoint(alltetri[i].pos, -1, -1);
 	return (0);
 }
 
@@ -101,17 +64,24 @@ int	solve_tetris(t_tetris *tetri)
 {
 	int	minsize;
 	int	i;
+	unsigned short	tmap[16];
+	unsigned short	*map;
 
+	map = tmap;
 	i = 0;
 	while ((tetri)[i].shape > 0)
-	{
 		i++;
-	}
 	minsize = 1;
 	while (minsize * minsize < i * 4)
 		minsize++;
-	while (solver(tetri, minsize) == 0)
+	i = -1;
+	while(++i < 16)
+		map[i] = (unsigned short)0;
+	while (solver(tetri, minsize, map) == 0)
 	{
+		i = -1;
+		while(++i < 16)
+			map[i] = (unsigned short)0;
 		minsize++;
 	}
 	return (minsize);

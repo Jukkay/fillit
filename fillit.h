@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:04:21 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/06 10:19:46 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/06 21:47:33 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,8 @@ void			init_array(t_tetris *arr);
 void			free_array(t_tetris *arr);
 t_list			*lstsplit(const char *str, char c);
 t_list			*lstnewfree(void *content, size_t content_size);
+int				collisioncheck(int i, t_tetris *alltetri, unsigned short *map);
+void			remofmap(int i, t_tetris *alltetri, unsigned short *map);
+void			printtomap(int i, t_tetris *alltetri, unsigned short *map);
 
 #endif
