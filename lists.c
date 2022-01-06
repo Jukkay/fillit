@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 11:08:58 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/05 14:39:54 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/06 16:51:26 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ t_list	*lstnewfree(void *content, size_t content_size)
 		}
 	}
 	else
-	{
-		free(new);
 		return (NULL);
-	}
 	assing_val(new, content, content_size);
 	free(content);
 	return (new);
