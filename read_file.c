@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:07:13 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/06 10:05:51 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/06 10:19:59 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,20 +108,11 @@ int	validate_file(int fd, t_tetris *arr, int tetris, int last)
 	return (0);
 }
 
-int	read_file(int argc, char **argv, t_tetris *arr)
+int	read_file(char **argv, t_tetris *arr)
 {
 	int		fd;
 	int		ret;
-	int		i;
-
-	i = 0;
-	while (i < 27)
-	{
-		arr[i].shape = 0;
-		i++;
-	}
-	if (argc != 2)
-		return (puterror("Include ONE file name after the binary name."));
+	
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		return (0);
