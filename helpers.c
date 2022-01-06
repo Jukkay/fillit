@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:57:35 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/06 10:19:19 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/06 10:48:56 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	free_array(t_tetris *arr)
 	i = 0;
 	if (arr[0].shape == 0)
 		return ;
-	while (arr[i].shape != 0)
+	while (arr[i].shape > 0)
 	{
 		free(arr[i].size);
 		free(arr[i].pos);

@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 18:41:40 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/06 10:22:30 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/06 10:38:52 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_tetris	arr[28];
+	t_tetris	arr[27];
 	t_tetris	*ptr;
 
 	ptr = arr;
