@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:57:35 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/05 12:59:53 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/06 09:57:08 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ int	puterror(char *error)
 	return (0);
 }
 
-void	freearr(t_tetris *arr, int tetriscount)
+void	freearr(t_tetris *arr)
 {
 	int	i;
 
 	i = 0;
 	if (arr[0].shape == 0)
 		return ;
-	while (i < tetriscount)
+	while (arr[i].shape != 0)
 	{
 		free(arr[i].size);
 		free(arr[i].pos);

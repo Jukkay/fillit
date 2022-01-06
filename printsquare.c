@@ -6,13 +6,13 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 13:23:07 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/04 15:04:22 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/06 10:03:47 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	ft_check_char(t_tetris *arr, int size, int tetriscount, int a)
+char	ft_check_char(t_tetris *arr, int size, int a)
 {
 	t_point			pos;
 	unsigned short	cursor;
@@ -22,7 +22,7 @@ char	ft_check_char(t_tetris *arr, int size, int tetriscount, int a)
 	i = 0;
 	pos.x = (a + size) % size;
 	pos.y = a / size;
-	while (i < tetriscount)
+	while (arr[i].shape != 0)
 	{
 		if (arr[i].shape & offsetshort(cursor, -(pos.x - arr[i].pos->x), \
 		-(pos.y - arr[i].pos->y)))
@@ -32,7 +32,7 @@ char	ft_check_char(t_tetris *arr, int size, int tetriscount, int a)
 	return ('.');
 }
 
-void	print_square(t_tetris *arr, int size, int tetriscount)
+void	print_square(t_tetris *arr, int size)
 {
 	int		i;
 	int		square;
@@ -41,7 +41,7 @@ void	print_square(t_tetris *arr, int size, int tetriscount)
 	square = size * size;
 	while (i < square)
 	{
-		ft_putchar(ft_check_char(arr, size, tetriscount, i));
+		ft_putchar(ft_check_char(arr, size, i));
 		i++;
 		if ((i + size) % size == 0)
 			ft_putchar('\n');

@@ -6,7 +6,7 @@
 /*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:07:13 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/05 14:59:12 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/06 10:05:51 by jylimaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,11 @@ int	validate_file(int fd, t_tetris *arr, int tetris, int last)
 		ft_bzero(buf, 21);
 		if (check_tetrimino(&arr, &str))
 			return (validate_file(fd, arr + 1, tetris + 1, last));
+		free(str);
 		return (0);
 	}
 	if (last == 20 && tetris > 0 && tetris < 27)
-		return (tetris);
+		return (1);
 	return (0);
 }
 
