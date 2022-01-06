@@ -12,8 +12,9 @@
 
 #include "fillit.h"
 
-static int	move_tpos(int index, t_tetris *alltetri, int boxwidth)
+static int	move_tpos(int index, t_tetris *alltetri, int boxwidth, unsigned short *map)
 {
+	unsigned short mask;
 	if (alltetri[index].pos->x == -1)
 	{
 		ft_setpoint(alltetri[index].pos, 0, 0);
@@ -22,7 +23,13 @@ static int	move_tpos(int index, t_tetris *alltetri, int boxwidth)
 			return (1);
 		return (0);
 	}
-	if (alltetri[index].pos->x + alltetri[index].size->x < boxwidth)
+	mask = 6 << (16 - alltetri[index].pos->x);
+	while((map[alltetri[index].pos->y] ^ mask) == 0)
+	{
+		mask = 6 << (16 - alltetri[index].pos->x);
+		alltetri[index].pos->x++;
+	}
+	if(alltetri[index].pos->x + alltetri[index].size->x < boxwidth)
 		alltetri[index].pos->x++;
 	else if (alltetri[index].pos->y + alltetri[index].size->y < boxwidth)
 		ft_setpoint(alltetri[index].pos, 0, alltetri[index].pos->y + 1);
@@ -43,7 +50,7 @@ static int	solver(t_tetris *alltetri, int boxwidth, unsigned short *map)
 		i++;
 	if (alltetri[i].shape == 0)
 		return (1);
-	while (move_tpos(i, alltetri, boxwidth) == 1)
+	while (move_tpos(i, alltetri, boxwidth, map) == 1)
 	{
 		if (collisioncheck(i, alltetri, map))
 		{
