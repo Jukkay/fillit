@@ -6,15 +6,15 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 01:49:05 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/08 02:49:36 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/08 03:01:12 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	printtomap(int i, t_tetris *alltetri, uint16_t *map)
+void	printtomap(int i, t_tetris *alltetri, t_uint16 *map)
 {
-	uint16_t		mask;
+	t_uint16		mask;
 	int				k;
 
 	mask = 61440;
@@ -27,9 +27,9 @@ void	printtomap(int i, t_tetris *alltetri, uint16_t *map)
 	}
 }
 
-void	remofmap(int i, t_tetris *alltetri, uint16_t *map)
+void	remofmap(int i, t_tetris *alltetri, t_uint16 *map)
 {
-	uint16_t		mask;
+	t_uint16		mask;
 	int				k;
 
 	mask = 61440;
@@ -42,9 +42,9 @@ void	remofmap(int i, t_tetris *alltetri, uint16_t *map)
 	}
 }
 
-int	collisioncheck(int i, t_tetris *alltetri, uint16_t *map)
+int	collisioncheck(int i, t_tetris *alltetri, t_uint16 *map)
 {
-	uint16_t		mask;
+	t_uint16		mask;
 	int				k;
 
 	k = -1;
