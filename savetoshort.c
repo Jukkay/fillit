@@ -6,16 +6,16 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:33:28 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/07 22:02:55 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/08 02:58:07 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 //TEST FUNCTION print bits in a grid
-void	print_bits(unsigned long long oct, unsigned long long size)
+/* void	print_bits(unsigned long long oct, unsigned long long size)
 {
-	unsigned long long i;
+	unsigned long long	i;
 	int z = 1;
 	i = 1;
 	i = i << size;
@@ -38,7 +38,7 @@ void	print_bits(unsigned long long oct, unsigned long long size)
 		}
 		z++;
 	}
-}
+} */
 
 //flip specified bit
 static unsigned short	flipbit(unsigned short i, int s)
@@ -63,11 +63,11 @@ unsigned short	offsetshort(unsigned short i, int x, int y)
 			| (240 & ((i & 240) >> ft_abs(x)))
 			| (3840 & ((i & 3840) >> ft_abs(x)))
 			| (61440 & ((i & 61440) >> ft_abs(x)));
-	if (y >= 0 )
-		while(y-- > 0)
+	if (y >= 0)
+		while (y-- > 0)
 			result = result << 4;
 	else
-		while(y++ < 0)
+		while (y++ < 0)
 			result = result >> 4;
 	return (result);
 }
