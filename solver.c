@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 21:40:45 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/08 02:56:48 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/08 06:25:26 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,9 @@
 static int	move_tpos(int i, t_tetris *alltetri, int boxwidth, t_uint16 *map)
 {
 	t_uint16	mask;
-
-	if (alltetri[i].pos->x == -1)
-	{
-		ft_setpoint(alltetri[i].pos, 0, 0);
-		if (alltetri[i].pos->x + alltetri[i].size->x <= boxwidth \
-		&& alltetri[i].pos->y + alltetri[i].size->y <= boxwidth)
-			return (1);
-		return (0);
-	}
 	mask = 65535 << (16 - boxwidth);
 	if ((map[alltetri[i].pos->y] ^ mask)
-		&& alltetri[i].pos->x + alltetri[i].size->x < boxwidth)
+		&& (alltetri[i].pos->x + 1) + alltetri[i].size->x <= boxwidth)
 			alltetri[i].pos->x++;
 	else if (alltetri[i].pos->y + alltetri[i].size->y < boxwidth)
 		ft_setpoint(alltetri[i].pos, 0, alltetri[i].pos->y + 1);
@@ -47,6 +38,7 @@ static int	solver(t_tetris *alltetri, int boxwidth, t_uint16 *map)
 		i++;
 	if (alltetri[i].shape == 0)
 		return (1);
+	ft_setpoint(alltetri[i].pos, -1, 0);
 	while (move_tpos(i, alltetri, boxwidth, map) == 1)
 	{
 		if (collisioncheck(i, alltetri, map))
