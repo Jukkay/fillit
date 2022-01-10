@@ -3,55 +3,84 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:07:13 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/10 12:02:34 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/10 11:24:46 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	get_tetrimino_size(t_tetris **arr, char *str)
+static t_list	*lstnewfree(void *content, size_t content_size)
 {
-	t_point	size;
-	t_point	min;
-	t_point	max;
-	int		i;
+	t_list	*new;
+
+	new = malloc(sizeof(t_list));
+	if (new)
+	{
+		new->content = malloc(content_size);
+		if (!new->content && content_size)
+			return (NULL);
+		if (!content)
+		{
+			new->content = NULL;
+			new->content_size = (size_t)0;
+		}
+		else
+		{
+			ft_memmove(new->content, content, content_size);
+			new->content_size = content_size;
+		}
+		new->next = NULL;
+	}
+	else
+		return (NULL);
+	free(content);
+	return (new);
+}
+
+static size_t	ft_wordlen(char *s, char c)
+{
+	size_t	i;
 
 	i = 0;
-	ft_setpoint(&min, 3, 3);
-	ft_setpoint(&max, 0, 0);
-	while (str[i])
+	while (*s && *s != c)
 	{
-		if (str[i] == '#' && i % 4 < min.x)
-			min.x = i % 4;
-		if (str[i] == '#' && i % 4 > max.x)
-			max.x = i % 4;
-		if (str[i] == '#' && i / 4 < min.y)
-			min.y = i / 4;
-		if (str[i] == '#' && i / 4 > max.y)
-			max.y = i / 4;
 		i++;
+		s++;
 	}
-	size.x = max.x - min.x + 1;
-	size.y = max.y - min.y + 1;
-	(*arr)->size = ft_newpoint(size.x, size.y);
-	(*arr)->pos = ft_newpoint(-1, -1);
+	return (i);
 }
 
-int	check_tetrimino(t_tetris **arr, char **str)
+static t_list	*lstsplit(const char *str, char c)
 {
-	if (!(check_shape(*str)))
-		return (0);
-	(*arr)->shape = save_short(*str);
-	get_tetrimino_size(arr, *str);
-	ft_strclr(*str);
-	free(*str);
-	return (1);
+	t_list	*words;
+	t_list	*word;
+
+	words = NULL;
+	if (!str)
+		return (NULL);
+	while (*str)
+	{
+		while (*str == c && *str)
+			str++;
+		word = lstnewfree(ft_strnew((ft_wordlen((char *)str, c) + 1)), \
+		(ft_wordlen((char *)str, c) + 1));
+		if (!word)
+		{
+			ft_lstdel(&words, &ft_freeclr);
+			return (NULL);
+		}
+		if (ft_wordlen((char *)str, c) > 0)
+			ft_memmove(word->content, str, ft_wordlen((char *)str, c));
+		ft_lstput(&words, word);
+		str = str + ft_wordlen((char *)str, c);
+	}
+	return (words);
 }
 
-int	validate_file(int fd, t_tetris *arr, int tetris, int last)
+static int	validate_file(int fd, t_tetris *arr, int tetris, int last)
 {
 	char	buf[21];
 	char	*str;
@@ -92,7 +121,7 @@ int	read_file(char **argv, t_tetris *arr)
 	close(fd);
 	if (!ret)
 	{
-		ft_putendl_fd("error", 2);
+		ft_putendl("error");
 		return (0);
 	}
 	return (ret);

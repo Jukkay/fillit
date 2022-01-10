@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 15:34:19 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/10 12:02:33 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/10 11:15:00 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,43 @@ int	check_lines(char *str, int i, int n, int ln)
 	if (ln == 4 && str[i] == '\0')
 		return (1);
 	return (0);
+}
+
+static void	get_tetrimino_size(t_tetris **arr, char *str)
+{
+	t_point	size;
+	t_point	min;
+	t_point	max;
+	int		i;
+
+	i = 0;
+	ft_setpoint(&min, 3, 3);
+	ft_setpoint(&max, 0, 0);
+	while (str[i])
+	{
+		if (str[i] == '#' && i % 4 < min.x)
+			min.x = i % 4;
+		if (str[i] == '#' && i % 4 > max.x)
+			max.x = i % 4;
+		if (str[i] == '#' && i / 4 < min.y)
+			min.y = i / 4;
+		if (str[i] == '#' && i / 4 > max.y)
+			max.y = i / 4;
+		i++;
+	}
+	size.x = max.x - min.x + 1;
+	size.y = max.y - min.y + 1;
+	(*arr)->size = ft_newpoint(size.x, size.y);
+	(*arr)->pos = ft_newpoint(-1, -1);
+}
+
+int	check_tetrimino(t_tetris **arr, char **str)
+{
+	if (!(check_shape(*str)))
+		return (0);
+	(*arr)->shape = save_short(*str);
+	get_tetrimino_size(arr, *str);
+	ft_strclr(*str);
+	free(*str);
+	return (1);
 }
