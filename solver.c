@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 21:40:45 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/10 12:02:59 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/10 16:29:43 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	move_tpos(int i, t_tetris *alltetri, int boxwidth, t_uint16 *map)
 	t_uint16	mask;
 
 	alltetri[i].pos->x++;
-		mask = 57344 >> alltetri[i].pos->x;
+	mask = 57344 >> alltetri[i].pos->x;
 	while (((map[alltetri[i].pos->y] & mask) ^ mask) == 0)
 	{
 		if ((alltetri[i].pos->x) + alltetri[i].size->x < boxwidth)

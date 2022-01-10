@@ -1,1 +1,5 @@
 main.c
+libft/*.o
+eval_tests/*
+fillit
+libft/libft.a
