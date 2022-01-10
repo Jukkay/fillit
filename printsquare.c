@@ -6,12 +6,13 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 13:23:07 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/10 10:46:46 by ubuntu           ###   ########.fr       */
+/*   Updated: 2022/01/10 11:42:14 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
+// checks if and what tetrimino overlaps with given coordinate
 char	ft_check_char(t_tetris *arr, int size, int a)
 {
 	t_point			pos;
@@ -32,6 +33,7 @@ char	ft_check_char(t_tetris *arr, int size, int a)
 	return ('.');
 }
 
+// prints out the solution
 void	print_square(t_tetris *arr, int size)
 {
 	int		i;

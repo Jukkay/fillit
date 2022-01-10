@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 15:34:19 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/10 11:15:00 by ubuntu           ###   ########.fr       */
+/*   Updated: 2022/01/10 11:47:06 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	check_shape(char *grid)
 	return (FALSE);
 }
 
+// checks for correct chars and amount of lines and chars
 int	check_lines(char *str, int i, int n, int ln)
 {
 	int	ch;
@@ -70,6 +71,7 @@ int	check_lines(char *str, int i, int n, int ln)
 	return (0);
 }
 
+// measures tetrimino's dimensions and assigns size and position
 static void	get_tetrimino_size(t_tetris **arr, char *str)
 {
 	t_point	size;
@@ -98,6 +100,7 @@ static void	get_tetrimino_size(t_tetris **arr, char *str)
 	(*arr)->pos = ft_newpoint(-1, -1);
 }
 
+// checks tetrimino validity
 int	check_tetrimino(t_tetris **arr, char **str)
 {
 	if (!(check_shape(*str)))

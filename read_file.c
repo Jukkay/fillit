@@ -6,12 +6,13 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:07:13 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/10 11:24:46 by ubuntu           ###   ########.fr       */
+/*   Updated: 2022/01/10 11:38:43 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
+// creates a new list item and frees memory allocated for content
 static t_list	*lstnewfree(void *content, size_t content_size)
 {
 	t_list	*new;
@@ -40,6 +41,7 @@ static t_list	*lstnewfree(void *content, size_t content_size)
 	return (new);
 }
 
+// checks for index of char c
 static size_t	ft_wordlen(char *s, char c)
 {
 	size_t	i;
@@ -53,6 +55,7 @@ static size_t	ft_wordlen(char *s, char c)
 	return (i);
 }
 
+// splits string into a list to remove newlines
 static t_list	*lstsplit(const char *str, char c)
 {
 	t_list	*words;
@@ -80,6 +83,7 @@ static t_list	*lstsplit(const char *str, char c)
 	return (words);
 }
 
+// checks file validity
 static int	validate_file(int fd, t_tetris *arr, int tetris, int last)
 {
 	char	buf[21];
@@ -109,6 +113,7 @@ static int	validate_file(int fd, t_tetris *arr, int tetris, int last)
 	return (0);
 }
 
+// opens and closes files and prints errors
 int	read_file(char **argv, t_tetris *arr)
 {
 	int		fd;
