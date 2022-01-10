@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lists.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 11:08:58 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/06 16:51:26 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/10 10:39:26 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-static void	assing_val(t_list *new, void const *content, size_t content_size)
-{
-	if (!content)
-	{
-		new->content = NULL;
-		new->content_size = (size_t)0;
-	}
-	else
-	{
-		ft_memmove(new->content, content, content_size);
-		new->content_size = content_size;
-	}
-	new->next = NULL;
-}
 
 t_list	*lstnewfree(void *content, size_t content_size)
 {
@@ -36,15 +21,21 @@ t_list	*lstnewfree(void *content, size_t content_size)
 	{
 		new->content = malloc(content_size);
 		if (!new->content && content_size)
-		{
-			free(new->content);
-			free(new);
 			return (NULL);
+		if (!content)
+		{
+			new->content = NULL;
+			new->content_size = (size_t)0;
 		}
+		else
+		{
+			ft_memmove(new->content, content, content_size);
+			new->content_size = content_size;
+		}
+		new->next = NULL;
 	}
 	else
 		return (NULL);
-	assing_val(new, content, content_size);
 	free(content);
 	return (new);
 }
