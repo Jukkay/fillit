@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 15:34:19 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/10 11:47:06 by ubuntu           ###   ########.fr       */
+/*   Updated: 2022/01/10 12:09:39 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	check_lines(char *str, int i, int n, int ln)
 	}
 	if (ln == 4 && str[i] == '\0')
 		return (1);
+	free(str);
 	return (0);
 }
 
