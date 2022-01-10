@@ -6,15 +6,13 @@
 #    By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 10:15:03 by htahvana          #+#    #+#              #
-#    Updated: 2022/01/03 15:29:37 by jylimaul         ###   ########.fr        #
+#    Updated: 2022/01/10 18:42:36 by jylimaul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
 CFLAGS = -Wall -Werror -Wextra
-
-INCL = -I ./includes
 
 FILES = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 	ft_isdigit.c ft_isprint.c ft_itoa.c ft_memalloc.c ft_memccpy.c \
@@ -37,12 +35,11 @@ FILES = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 
 
 OBJS = $(FILES:.c=.o)
-SRCS = $(FILES:%.c=srcs/%.c)
 
 all: $(NAME)
 
 $(NAME):
-	gcc -c $(CFLAGS) $(INCL) $(SRCS)
+	gcc -c $(CFLAGS) $(FILES)
 	ar rcs $(NAME) $(OBJS)
 
 clean:

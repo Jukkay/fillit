@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+         #
+#    By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 12:35:33 by htahvana          #+#    #+#              #
-#    Updated: 2022/01/10 11:19:48 by ubuntu           ###   ########.fr        #
+#    Updated: 2022/01/10 18:44:21 by jylimaul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = fillit
 
 CFLAGS = -Wall -Werror -Wextra
 
-INCL = -I ./libft/includes
+INCL = -I ./libft/
 
 LIB = -L ./libft -lft
 
