@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 18:41:40 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/06 10:38:52 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/10 12:02:18 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,26 @@ int	main(int argc, char **argv)
 {
 	t_tetris	arr[27];
 	t_tetris	*ptr;
+	int			i;
 
 	ptr = arr;
 	if (argc != 2)
-		return (puterror("Include ONE file name. \"./fillit <filename>\""));
-	init_array(arr);
+	{
+		ft_putendl("Include ONE file name. \"./fillit <filename>\"");
+		return (0);
+	}
+	i = -1;
+	while (++i < 27)
+		arr[i].shape = 0;
 	if (read_file(argv, ptr))
+	{
 		print_square(arr, solve_tetris(arr));
-	free_array(arr);
+		i = -1;
+		while (arr[++i].shape > 0)
+		{
+			free(arr[i].size);
+			free(arr[i].pos);
+		}
+	}
 	return (0);
 }

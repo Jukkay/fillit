@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   savetoshort.c                                      :+:      :+:    :+:   */
+/*   manage_short.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:33:28 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/08 02:58:07 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/10 12:23:00 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,6 @@
 	}
 } */
 
-//flip specified bit
-static unsigned short	flipbit(unsigned short i, int s)
-{
-	i |= 1 << s;
-	return (i);
-}
-
 //offset given short in the short grid
 unsigned short	offsetshort(unsigned short i, int x, int y)
 {
@@ -71,55 +64,29 @@ unsigned short	offsetshort(unsigned short i, int x, int y)
 			result = result >> 4;
 	return (result);
 }
-/*  unsigned short sbshort(unsigned short sn, int x, int y)
-{
-	unsigned short result;
-
-	if(x < 0)
-		result = (0b0000000000001111 & ((sn & 0b0000000000001111) >> abs(x))) |
-				(0b0000000011110000 & ((sn & 0b0000000011110000) >> abs(x))) |
-				(0b0000111100000000 & ((sn & 0b0000111100000000) >> abs(x))) |
-				(0b1111000000000000 & ((sn & 0b1111000000000000) >> abs(x)));
-	else
-		result = (0b0000000000001111 & ((sn & 0b0000000000001111) << x)) |
-				(0b0000000011110000 & ((sn & 0b0000000011110000) << x)) |
-				(0b0000111100000000 & ((sn & 0b0000111100000000) << x)) |
-				(0b1111000000000000 & ((sn & 0b1111000000000000) << x));
-	return (result);
-} 
- */
-
-//move bits top left
-static unsigned short	movetopleft(unsigned short i)
-{
-	while (i < 4096)
-		i = i << 4;
-	while (!(i & 34952))
-	{
-		i = i << 1;
-	}
-	return (i);
-}
 
 //returns given string grid as a short number.
-unsigned short	savetoshort(char *square)
+unsigned short	save_short(char *line)
 {
 	int				i;
 	unsigned short	grid;
 	char			*str;
 
 	i = 0;
-	str = square;
+	str = line;
 	grid = 0;
 	while (str)
 	{
 		i = i + ft_strclen(str, '#');
-		grid = flipbit(grid, 15 - i);
+		grid |= 1 << (15 - i);
 		i++;
 		str = ft_strchr(str, '#');
 		if (str)
 			str++;
 	}
-	grid = movetopleft(grid);
+	while (grid < 4096)
+		grid <<= 4;
+	while (!(grid & 34952))
+		grid <<= 1;
 	return (grid);
 }

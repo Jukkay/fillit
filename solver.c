@@ -6,7 +6,7 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 21:40:45 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/08 21:08:52 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/10 12:02:59 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ static int	solver(t_tetris *alltetri, int boxwidth, t_uint16 *map)
 	ft_setpoint(alltetri[i].pos, -1, 0);
 	while (move_tpos(i, alltetri, boxwidth, map) == 1)
 	{
-		if (collisioncheck(i, alltetri, map))
+		if (collisionmap(i, alltetri, map))
 		{
 			printtomap(i, alltetri, map);
 			if (solver(alltetri, boxwidth, map) == 0)
 			{
-				remofmap(i, alltetri, map);
+				rmofmap(i, alltetri, map);
 				continue ;
 			}
 			return (1);

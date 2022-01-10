@@ -3,42 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jylimaul <jylimaul@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:07:13 by jylimaul          #+#    #+#             */
-/*   Updated: 2022/01/06 10:47:19 by jylimaul         ###   ########.fr       */
+/*   Updated: 2022/01/10 12:02:34 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-int	check_lines(char *str, int i, int n, int ln)
-{
-	int	ch;
-
-	ch = 0;
-	while (i < n)
-	{
-		if (str[i] == '.' || str[i] == '#')
-		{
-			ch++;
-			i++;
-			continue ;
-		}
-		if (ch == 4 && str[i] == '\n')
-		{
-			ln++;
-			i++;
-			ch = 0;
-			continue ;
-		}
-		i++;
-		break ;
-	}
-	if (ln == 4 && str[i] == '\0')
-		return (1);
-	return (0);
-}
 
 void	get_tetrimino_size(t_tetris **arr, char *str)
 {
@@ -70,9 +42,9 @@ void	get_tetrimino_size(t_tetris **arr, char *str)
 
 int	check_tetrimino(t_tetris **arr, char **str)
 {
-	if (!(validgrid(*str)))
+	if (!(check_shape(*str)))
 		return (0);
-	(*arr)->shape = savetoshort(*str);
+	(*arr)->shape = save_short(*str);
 	get_tetrimino_size(arr, *str);
 	ft_strclr(*str);
 	free(*str);
@@ -119,6 +91,9 @@ int	read_file(char **argv, t_tetris *arr)
 	ret = validate_file(fd, arr, 0, 0);
 	close(fd);
 	if (!ret)
-		return (puterror("error"));
+	{
+		ft_putendl_fd("error", 2);
+		return (0);
+	}
 	return (ret);
 }

@@ -6,36 +6,14 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 15:34:19 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/03 14:13:22 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/10 12:02:33 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-/* void	printstructs(t_tetris **all)
-{
-	int	i;
-
-	i = 0;
-	while ((*all)[i].shape > 0)
-	{
-		print_bits((*all)[i].shape,15);
-		ft_putstr("pos:");
-		ft_putnbr((*all)[i].pos->x);
-		ft_putchar('-');
-		ft_putnbr((*all)[i].pos->y);
-		ft_putstr(";size:");
-		ft_putnbr((*all)[i].size->x);
-		ft_putchar('-');
-		ft_putnbr((*all)[i].size->y);
-		ft_putendl("========");
-
-		i++;
-	}
-			ft_putendl("");
-} */
-
-int	validgrid(char *grid)
+//checks if given string includes a valid tetrimino shape
+int	check_shape(char *grid)
 {
 	int	i;
 	int	connections;
@@ -62,4 +40,32 @@ int	validgrid(char *grid)
 	if (connections > 5 && i == 0)
 		return (TRUE);
 	return (FALSE);
+}
+
+int	check_lines(char *str, int i, int n, int ln)
+{
+	int	ch;
+
+	ch = 0;
+	while (i < n)
+	{
+		if (str[i] == '.' || str[i] == '#')
+		{
+			ch++;
+			i++;
+			continue ;
+		}
+		if (ch == 4 && str[i] == '\n')
+		{
+			ln++;
+			i++;
+			ch = 0;
+			continue ;
+		}
+		i++;
+		break ;
+	}
+	if (ln == 4 && str[i] == '\0')
+		return (1);
+	return (0);
 }

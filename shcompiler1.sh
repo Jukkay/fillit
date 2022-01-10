@@ -1,1 +1,0 @@
-gcc -Wall -Wextra -Werror -xc ./eval_tests/hmain.test read_file.c checker.c helpers.c savetoshort.c  -I ./libft/includes -L ./libft -lft

@@ -6,12 +6,13 @@
 /*   By: htahvana <htahvana@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 01:49:05 by htahvana          #+#    #+#             */
-/*   Updated: 2022/01/08 21:12:55 by htahvana         ###   ########.fr       */
+/*   Updated: 2022/01/10 12:02:57 by htahvana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
+//puts the tetrimino at the given index into the map
 void	printtomap(int i, t_tetris *alltetri, t_uint16 *map)
 {
 	t_uint16	mask;
@@ -30,7 +31,8 @@ void	printtomap(int i, t_tetris *alltetri, t_uint16 *map)
 			<< 12 >> alltetri[i].pos->x);
 }
 
-void	remofmap(int i, t_tetris *alltetri, t_uint16 *map)
+//removes the tetrimino at the given index from the map
+void	rmofmap(int i, t_tetris *alltetri, t_uint16 *map)
 {
 	t_uint16	mask;
 
@@ -48,7 +50,8 @@ void	remofmap(int i, t_tetris *alltetri, t_uint16 *map)
 			<< 12 >> alltetri[i].pos->x);
 }
 
-int	collisioncheck(int i, t_tetris *alltetri, t_uint16 *map)
+//checks the tetrimino at the given index to the map
+int	collisionmap(int i, t_tetris *alltetri, t_uint16 *map)
 {
 	t_uint16	mask;
 
